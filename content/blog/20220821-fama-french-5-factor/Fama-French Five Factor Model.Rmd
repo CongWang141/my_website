@@ -1,0 +1,141 @@
+---
+title: "Fama-French Five Factor Model"
+author: "Cong Wang"
+date: "2022-08-02"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    toc_float: true
+---
+<style type="text/css">
+  h1,h2,h3{
+  font-size: 16pt;
+  color: steelblue
+}
+</style>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Model Introduction
+
+Fama-French Five Factor Model is an extension of the classic CAPM to include SMB (Small Minus Big), 	HML (High Minus Low), RMW (Robust Minus Weak), and CMA (Conservative Minus Aggressive).
+
+The Fama/French 5 factors (2x3) are constructed using the 6 value-weight portfolios formed on size and book-to-market, the 6 value-weight portfolios formed on size and operating profitability, and the 6 value-weight portfolios formed on size and investment. 
+	
+1. SMB (Small Minus Big) is the average return on the nine small stock portfolios minus the average return on the nine big stock portfolios.
+2. HML (High Minus Low) is the average return on the two value portfolios minus the average return on the two growth portfolios.
+3. RMW (Robust Minus Weak) is the average return on the two robust operating profitability portfolios minus the average return on the two weak operating profitability portfolios. 
+4. CMA (Conservative Minus Aggressive) is the average return on the two conservative investment portfolios minus the average return on the two aggressive investment portfolios.
+5. R~m~-R~f~, the excess return on the market, value-weight return of all CRSP firms incorporated in the US and listed on the NYSE, AMEX, or NASDAQ.
+
+# Data Import
+
+## The Five Factors Daily Data
+The five factors daily data is from the link here: http://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html, you can also download it directly through the [link](http://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_5_Factors_2x3_daily_CSV.zip).
+
+Here I import the data from the unfolded zip file,
+```{r, warning=FALSE, message=FALSE}
+library(readr)
+ffd <- read_csv("F-F_Research_Data_5_Factors_2x3_daily.CSV", skip = 3)
+head(ffd, 5)
+```
+
+Change the first column's name.
+```{r}
+colnames(ffd)[1] <- "Date"
+head(ffd, 5)
+```
+
+## Amazon Stock Data
+Here I use the Amazon stock price data as an example. It is downloaded through the **quantmod** package.
+```{r, message=FALSE}
+library(quantmod)
+amazon <- getSymbols("AMZN", from="2010-01-01", to="2022-08-01", auto.assign = F)
+```
+
+Calculate the daily return.
+```{r}
+amazon$return1 <- dailyReturn(amazon$AMZN.Close, type = "log")
+
+```
+
+Or we can use this to get the exactly the same result.
+```{r}
+amazon$return2 <- (amazon$AMZN.Close-stats::lag(amazon$AMZN.Close))/stats::lag(amazon$AMZN.Close)
+```
+
+```{r}
+head(amazon[, 7:8], 5)
+```
+
+## Meger the stock return data with the five factors data
+```{r, message=FALSE}
+amazon_ret <- amazon$return1
+amazon_ret2 <- fortify.zoo(amazon_ret)
+colnames(amazon_ret2)[1] <- "Date"
+library(lubridate)
+ffd$Date <- ymd(ffd$Date)
+library(tidyverse)
+data_merged <- left_join(amazon_ret2, ffd, by="Date")
+```
+
+```{r}
+head(data_merged, 5)
+```
+Plot the return 
+```{r}
+library(ggplot2)
+p1 <- ggplot(amazon_ret2[-1, ], aes(x=Date, y=return1))
+p1 + geom_line(color="steelblue")
+```
+
+Density plot with normal density curve
+```{r, message=FALSE}
+p2 <- ggplot(amazon_ret2)
+p2 + geom_histogram(mapping = aes(x=return1, y=..density..), binwidth=0.005, color="steelblue", fill="grey", size=1) +
+  stat_function(fun = dnorm, args = list(mean = mean(amazon_ret2$return1, na.rm = T), sd = sd(amazon_ret2$return1, na.rm = T)), size=1)
+```
+
+# Regress Amazon's stock return on the five factors
+```{r}
+names(data_merged)[3] <- "Mkt.RF"
+fit <- lm(return1 ~  SMB + HML  + CMA + Mkt.RF + RMW, data = data_merged)
+fit2 <- lm(return1 ~  SMB + HML + CMA + Mkt.RF, data = data_merged)
+
+```
+
+```{r, message=FALSE}
+library(stargazer)
+stargazer(fit, fit2, title = "Fama-French Five Factor Regression OLS", type="text")
+
+```
+
+Plot the regression 
+```{r}
+par(mar = c(2, 2, 2, 2))
+par(mfrow = c(2, 2))
+plot(fit)
+```
+
+```{r}
+par(mar = c(2, 2, 2, 2))
+par(mfrow = c(2, 2))
+plot(fit2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

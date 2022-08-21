@@ -6,7 +6,7 @@ use_featured: false # if false, use most recent by date
 number_categories: 3 # set to zero to exclude
 show_intro: true
 intro: |
-  My research covers topics in the broad area of Macro-Finance, especially in Asset Pricing, Risk Management, Machine Learning, and Financial Economics.
+  My research covers topics in the broad area of Macro-Finance, especially in Asset Pricing, Risk Management, Machine Learning, and Financial Econometrics.
   
   I Like documentary "Planet Earth", now "Our Planet" has better quality and the same [David Attenborough](https://attenboroughfilm.com/). Concern about climate change, try to quantify the risk in the financial market and real economy. 
   

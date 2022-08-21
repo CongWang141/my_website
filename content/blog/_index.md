@@ -21,10 +21,10 @@ sidebar:
   description: "There are some models I have been working on with R. \n\nCheck Also some thoughts from my daily life. \n"
   
   show_sidebar_adunit: false
-  # text_link_label: Subscribe via RSS
-  # text_link_url: /index.xml
-  title: Some hints about this part.
-thumbnail_left: true
+  text_link_label: Check out in Rpubs
+  text_link_url: https://rpubs.com/CongWang141
+  title: My Tribe.
+thumbnail_left: false
 title: A Blog That Works
 ---
 

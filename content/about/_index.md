@@ -2,10 +2,10 @@
 cascade:
   headless: true
 description: |
-  A website template for Hugo developed by RStudio & Formspree and available for free.
+  A PhD student studying in Economics at Sapienza University of Rome, interested in Data Science.
 show_header: true
-sidebar_left: false
-title: About
+sidebar_left: true
+title: About Cong
 ---
 
 ** index doesn't contain a body, just front matter above.

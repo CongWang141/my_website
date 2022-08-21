@@ -1,4 +1,4 @@
-baseURL = "http://congwang141.netlify.app/"
+baseURL = "https://congwang141.netlify.app/"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Cong Sapienza"

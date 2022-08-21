@@ -7,6 +7,6 @@ headline: |
 ---
 
 <!-- this is a subheadline -->
-A PhD student studying Economics at Sapienza University of Rome. 
+PhD student studying Economics at Sapienza University of Rome. 
 
-Outside my research, I like coding, documentary, and travelling, let's get connected!!!
+Outside my research, I like coding, documentary, and travelling, Czech Beer and Italian Spritz are my favorites.

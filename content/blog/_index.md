@@ -20,7 +20,7 @@ sidebar:
   author: Cong Wang
   description: "There are some models I have been working on with R. \n\nCheck Also some thoughts from my daily life. \n"
   
-  show_sidebar_adunit: true
+  show_sidebar_adunit: false
   # text_link_label: Subscribe via RSS
   # text_link_url: /index.xml
   title: Some hints about this part.

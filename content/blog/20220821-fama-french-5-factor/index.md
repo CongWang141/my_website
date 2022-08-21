@@ -139,7 +139,7 @@ p1 <- ggplot(amazon_ret2[-1, ], aes(x=Date, y=return1))
 p1 + geom_line(color="steelblue")
 ```
 
-<img src="/blog/20220821-fama-french-5-factor/Fama-French Five Factor Model_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 Density plot with normal density curve
 
@@ -149,7 +149,7 @@ p2 + geom_histogram(mapping = aes(x=return1, y=..density..), binwidth=0.005, col
   stat_function(fun = dnorm, args = list(mean = mean(amazon_ret2$return1, na.rm = T), sd = sd(amazon_ret2$return1, na.rm = T)), size=1)
 ```
 
-<img src="/blog/20220821-fama-french-5-factor/Fama-French Five Factor Model_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 # Regress Amazon's stock return on the five factors
 
@@ -210,7 +210,7 @@ par(mfrow = c(2, 2))
 plot(fit)
 ```
 
-<img src="/blog/20220821-fama-french-5-factor/Fama-French Five Factor Model_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 
 ```r
@@ -219,7 +219,7 @@ par(mfrow = c(2, 2))
 plot(fit2)
 ```
 
-<img src="/blog/20220821-fama-french-5-factor/Fama-French Five Factor Model_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 
 

@@ -7,6 +7,10 @@ output:
     toc: true
     number_sections: true
     toc_float: true
+tags: 
+- r
+categories:
+- finance
 ---
 <style type="text/css">
   h1,h2,h3{

@@ -6,14 +6,14 @@ cascade:
   show_comments: true
   show_post_date: true
   sidebar:
-    show_sidebar_adunit: false
+    show_sidebar_adunit: true
     text_link_label: View recent posts
     text_link_url: /blog/
 description: "There are some models I have been working on with R. \n\nCheck Also some thoughts from my daily life. \n"
 
 layout: list-sidebar #choose list for another style
 show_author_byline: true
-show_button_links: false
+show_button_links: true
 show_post_date: true
 show_post_thumbnail: false
 sidebar:
@@ -24,7 +24,7 @@ sidebar:
   text_link_label: Check out in Rpubs
   text_link_url: https://rpubs.com/CongWang141
   title: My Tribe.
-thumbnail_left: false
+thumbnail_left: true
 title: A Blog That Works
 ---
 

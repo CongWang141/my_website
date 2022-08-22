@@ -1,6 +1,6 @@
 ---
 title: "Global Carbon Emission Analysis"
-author: "Cong Wang https://congwang.carrd.co/"
+author: "Cong Wang"
 date: "2022-07-30"
 output: 
   html_document:
@@ -11,7 +11,7 @@ excerpt: This airticle analyize the globle carobon emission. The data for this a
 tags: 
 - Carbon Emission
 
-catergories: 
+categories: 
 - Climate Change
 
 featured: true

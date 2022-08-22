@@ -9,4 +9,4 @@ headline: |
 <!-- this is a subheadline -->
 PhD student studying Economics at Sapienza University of Rome. 
 
-Outside my research, I like coding, documentary, and travelling, Czech Beer and Italian Spritz are my favorites!
+Outside my research, I like coding, documentary, and travelling, Czech Beer and Italian Spritz are my favorites!!!

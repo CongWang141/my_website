@@ -4,7 +4,9 @@ cascade:
 description: |
   A PhD student studying in Economics at Sapienza University of Rome, interested in Data Science.
 show_header: true
-sidebar_left: true
+# set false to not show the header
+sidebar_left: false
+# put the sidebar on the right if true
 title: About Cong
 ---
 

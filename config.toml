@@ -133,13 +133,9 @@ enableEmoji = true
   [[menu.header]]
     name = "Research"
     title = "Research"
-    url = "/collection/"
+    url = "/talk/"
     weight = 5
-  [[menu.header]]
-    name = "Elements"
-    title = "Element Page"
-    url = "/elements/"
-    weight = 6
+
     
   # Configure footer  
   [[menu.footer]]

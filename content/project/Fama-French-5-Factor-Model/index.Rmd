@@ -12,7 +12,7 @@ excerpt: Fama-French Five Factor Model is an extension of the classic CAPM to in
 tags: 
 - R
 categories:
-- Finance
+- Financial models
 
 draft: false
 

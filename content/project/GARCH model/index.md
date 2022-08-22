@@ -247,7 +247,7 @@ fit_garch
 ## 4    50      8988            0
 ## 
 ## 
-## Elapsed time : 0.2538078
+## Elapsed time : 0.254529
 ```
 
 

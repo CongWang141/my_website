@@ -2,11 +2,6 @@
 title: "GARCH Model with R"
 author: "Cong Wang"
 date: "2022-08-04"
-output: 
-  html_document:
-    toc: true
-    number_sections: true
-    toc_float: true
 tags:
 - R
 categories:

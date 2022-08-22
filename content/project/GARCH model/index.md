@@ -2,11 +2,6 @@
 title: "GARCH Model with R"
 author: "Cong Wang"
 date: "2022-08-04"
-output: 
-  html_document:
-    toc: true
-    number_sections: true
-    toc_float: true
 tags:
 - R
 categories:
@@ -247,7 +242,7 @@ fit_garch
 ## 4    50      8988            0
 ## 
 ## 
-## Elapsed time : 0.2405832
+## Elapsed time : 0.2764611
 ```
 
 

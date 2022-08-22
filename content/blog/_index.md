@@ -11,11 +11,11 @@ cascade:
     text_link_url: /blog/
 description: "There are some models I have been working on with R. \n\nCheck Also some thoughts from my daily life. \n"
 
-layout: list-sidebar #list
+layout: list-sidebar #choose list for another style
 show_author_byline: true
 show_button_links: false
 show_post_date: true
-show_post_thumbnail: true
+show_post_thumbnail: false
 sidebar:
   author: Cong Wang
   description: "There are some models I have been working on with R. \n\nCheck Also some thoughts from my daily life. \n"

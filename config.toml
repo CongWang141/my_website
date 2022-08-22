@@ -135,7 +135,11 @@ enableEmoji = true
     title = "Research"
     url = "/talk/"
     weight = 5
-
+  [[menu.header]]
+    name = "Contact"
+    title = "Contact"
+    url = "/contact/"
+    weight = 6
     
   # Configure footer  
   [[menu.footer]]

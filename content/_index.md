@@ -6,7 +6,7 @@ description:
   An economist interested in data science. 
 
 
-  Constantly feel depressed when I can not debug my code. Help me out !
+  Sit down, relax, pure yourself a cup of coffee and check out all the cool stuff I am working on!
   
   
   Buy me a coffee if you have any requests or questions, feel free to reach me out. 
@@ -16,7 +16,8 @@ images:
 show_action_link: true
 show_social_links: true
 subtitle: Drop me a message, let's get connected!
-text_align_left: false
+text_align_left: true
+# set false to let all the text on the home page align to the right
 title: Cong Wang
 type: home
 ---

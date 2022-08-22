@@ -20,6 +20,4 @@ options(
 )
 
 # fix Hugo version
-options(blogdown.hugo.version = "0.101.0",
-        blogdown.knit.serve_site = FALSE,
-        blogdown.knit.on_save = FALSE)
+options(blogdown.hugo.version = "0.101.0")

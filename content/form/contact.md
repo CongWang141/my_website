@@ -1,6 +1,6 @@
 ---
 date: "2019-02-25T13:38:41-06:00"
-description: We can get in contact by submitting this html form, I will reply you in email as soon as I can. Or we can get connected by all those social media. 
+description: We can get in contact by submitting this html form, I will reply you as soon as I can. Or we can get connected by all those social media. 
 draft: false
 formspree_form_id: cong.wang@uniroma1.it
 layout: split-right

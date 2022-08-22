@@ -20,7 +20,7 @@ sidebar:
   author: Cong Wang
   description: "There are some models I have been working on with R. \n\nCheck Also some thoughts from my daily life. \n"
   
-  show_sidebar_adunit: false
+  show_sidebar_adunit: true
   text_link_label: Check out in Rpubs
   text_link_url: https://rpubs.com/CongWang141
   title: My Tribe.

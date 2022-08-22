@@ -1,27 +1,38 @@
 ---
-author: Alison Hill
-cascade:
-  layout: single-series
-  sidebar:
-    author: Alison Hill
-    description: "Sometimes you want a souped-up series- a bundle of related pages
-      \nmeant to be read in sequence. This section is like a blog series, \nminus
-      the blog.\n"
-    show_author_byline: true
-    show_post_date: true
-    show_sidebar_adunit: true
-    text_contents_label: On this page
-    text_link_label: ""
-    text_link_url: ""
-    text_series_label: Outline
-    title: Create a Collection
-description: "Sometimes you want a souped-up series- a bundle of related pages \nmeant
-  to be read in sequence. This section is like a blog series, \nminus the blog.\n"
-layout: list-sidebar
-show_author_byline: false
-show_post_date: false
+title: Research
+description: |
+  This is a list for My research, it covers topics in the broad area of Macro-Finance, especially in Asset Pricing, Risk Management, Machine Learning, and Financial Econometrics.
+author: "Cong Wang"
 show_post_thumbnail: true
-subtitle: A collection, minus the blog.
-thumbnail_left: false
-title: Create a Collection
+show_author_byline: true
+show_post_date: true
+show_post_time: true
+show_button_links: true
+# for listing page layout
+layout: list # list, list-sidebar
+
+# for list-sidebar layout
+sidebar: 
+  title: Research
+  description: |
+    This is a list for My research, it covers topics in the broad area of Macro-Finance, especially in Asset Pricing, Risk Management, Machine Learning, and Financial Econometrics.
+  author: "Cong Wang"
+  text_link_label: Subscribe via RSS
+  text_link_url: /talk/index.xml
+  show_sidebar_adunit: false # show ad container
+
+# set up common front matter for all pages inside blog/
+cascade:
+  author: "Cong Wang"
+  show_author_byline: true
+  show_post_date: true
+  show_post_time: true
+  show_comments: false # see site config to choose Disqus or Utterances
+  # for single-sidebar layout
+  sidebar:
+    text_link_label: View recent papers
+    text_link_url: /collection/
+    show_sidebar_adunit: false # show ad container
 ---
+
+** No content below YAML for the talk _index. This file provides front matter for the listing page layout and sidebar content. It is also a branch bundle, and all settings under `cascade` provide front matter for all pages inside talk/. You may still override any of these by changing them in a page's front matter.**

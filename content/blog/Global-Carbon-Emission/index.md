@@ -2,11 +2,7 @@
 title: "Global Carbon Emission Analysis"
 author: "Cong Wang"
 date: "2022-07-30"
-output: 
-  html_document:
-    toc: true
-    number_sections: true
-    toc_float: true
+
 excerpt: This airticle analyize the globle carobon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. To break down the global carbon emission and decompose the trend.
 tags: 
 - Carbon Emission
@@ -75,7 +71,7 @@ world_p$year <- as.numeric(substr(world_p$year, 2, 5))
 ```
 
 
-### Use ggplot2.{-}
+### Use ggplot2.
 
 ```r
 library(ggplot2)
@@ -88,7 +84,7 @@ p1 + geom_line(color="steelblue") +
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
-### YOY Change in percentage.{-}
+### YOY Change in percentage.
 Calculate the year over year change of carbon emission.
 
 ```r

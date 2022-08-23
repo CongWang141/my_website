@@ -17,7 +17,7 @@ sidebar:
   author: "Cong Wang"
   text_link_label: Visit my Rpubs
   text_link_url: https://rpubs.com/CongWang141
-  show_sidebar_adunit: true # show ad container
+  show_sidebar_adunit: false # show ad container
 
 # set up common front matter for all pages inside blog/
 cascade:

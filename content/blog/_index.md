@@ -12,7 +12,7 @@ layout: list-sidebar # list, list-sidebar, list-grid
 
 # for list-sidebar layout
 sidebar: 
-  title: A Sidebar for Your Thoughts
+  title: Some Fragments of My Thought
   description: "There are some models I have been working on with R. \n\nCheck Also some thoughts from my daily life. \n"
   author: "Cong Wang"
   text_link_label: Visit my Rpubs

@@ -2,7 +2,7 @@ baseURL = "http://congwang.org/"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Cong Sapienza"
-author = "Cong Wang"
+author = "Cong Wang|PhD"
 copyright = "" # set to override the auto generated copyright using org info and now year
 googleAnalytics = ""
 disqusShortname = "" # see params.utterances to use utterances instead of Disqus
@@ -51,7 +51,7 @@ enableEmoji = true
   # use a built-in color theme
   # one of: forest / grayscale / peach / plum /
   #         poppy / sky / violet / water 
-  theme = "water"
+  theme = "sky"
   
   # or, leave theme empty & make your own palette
   # see docs at https://hugo-apero.netlify.app/blog/color-themes/

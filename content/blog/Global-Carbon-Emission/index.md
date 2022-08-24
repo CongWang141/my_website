@@ -3,7 +3,7 @@ title: "Global Carbon Emission Analysis"
 author: "Cong Wang"
 date: "2022-07-30"
 
-excerpt: This airticle analyize the globle carobon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. To break down the global carbon emission and decompose the trend.
+excerpt: This airticle analyize the globle carobon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. It breaks down the global carbon emission and decomposes the trend.
 tags: 
 - Carbon Emission
 
@@ -13,15 +13,12 @@ categories:
 featured: true
 layout: single-sidebar
 ---
-<style type="text/css">
-  h1,h2,h3{
-  font-size: 16pt;
-  color: steelblue
-}
-</style>
 
 
 
+
+# Motivation
+Global warming has been brought up a long time ago, but it never draws most people's attention not even me till recently. Since 2020,  the wild fires in Austrilia and north America terrified me a lot. In 2022, heat wave stroms most places all around the world. Human activities could be one of the main reseasons for those catastraphic climate problems. Carbon emission is considered a good proxy to quantify the influence of human activities to global warming. This airticle tries to give some insights about the current status and historical change of global carbon emission.
 
 # Data Sourse
 The data for this analysis is from **World Bank Open Data**, link: https://data.worldbank.org/
@@ -47,6 +44,7 @@ Carbon emission data is collected since 1990, the year before that shows NA, we 
 library(tidyverse)
 ```
 
+Build a function to choose columns which are not all data are NA. Then select those columns to a new dataset.
 
 ```r
 not_all_na <- function(x) any(!is.na(x))
@@ -103,7 +101,7 @@ ylab("YOY Change of Co2 Emission") +
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 ## Co2 emission in different area{.tabset}
-The dataset also includes carbon emission data for different geographic areas.
+Except for the world total carbon emission, different geographic area's carbon emission is also collected in the data.
 
 Get total carbon emission for each row through all time
 
@@ -112,7 +110,7 @@ d_comp$co2_total <- rowSums(d_comp[ ,3:32])
 d_comp <- arrange(d_comp, desc(co2_total)) 
 ```
 
-Except for the world total carbon emission, different geographic area's carbon emission is also collected in the data. Pick geographic area.
+Pick geographic area.
 
 ```r
 co2_area <- d_comp[d_comp$Country.Name %in% c("East Asia & Pacific", "North America", "Euro area", "Middle East & North Africa", "South Asia", "Latin America & Caribbean", "Sub-Saharan Africa"), ]
@@ -145,7 +143,7 @@ p2 + geom_line() +
 ```r
 p3 <- ggplot(data = co2_area_p, aes(x=reorder(Country.Name, -co2_total), y=co2_total/1000000))
 p3 + geom_bar(stat="identity", fill="steelblue") + 
-  ggtitle("in million") +  ylab("Total Co2 Emission") + xlab("Country") +
+  ggtitle("in million") +  ylab("Total Co2 Emission") + xlab("Geographic Areas") +
   theme(axis.text.x = element_text(angle = 30, hjust = 1)) 
 ```
 

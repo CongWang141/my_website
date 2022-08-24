@@ -15,7 +15,7 @@ show_social_links: true
 subtitle: Drop me a message, let's get connected!
 text_align_left: true
 # set false to let all the text on the home page align to the right
-title: Cong Wang|PhD
+title: Cong Wang | PhD
 type: home
 ---
 

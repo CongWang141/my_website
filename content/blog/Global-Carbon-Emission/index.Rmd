@@ -11,7 +11,7 @@ categories:
 - Climate Change
 
 featured: true
-layout: single-sidebar
+layout: single
 ---
 
 

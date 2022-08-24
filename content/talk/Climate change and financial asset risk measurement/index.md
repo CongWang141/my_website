@@ -13,7 +13,7 @@ subtitle:
 title: Climate change and financial asset risk measurement
 ---
 
-This paper investigates the relationship between asset’s risk measure and climate change. We use VaR
+This paper investigates the relationship between financial asset’s risk measure and climate change. We use VaR
 model to stress the tail risk due to rare disaster brought by climate change. We use the Hodrick-Prescott
 filter to remove the pro-cyclicality in the VaR model. Carbon emission is used as a proxy for climate
 change effect, companies’ other fundamental financial indicators will also be included in regressors. We use

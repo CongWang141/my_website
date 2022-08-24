@@ -6,7 +6,7 @@ description:
   An economist interested in data science. 
 
 
-  Sit down, relax, pure yourself a cup of coffee and check out all the cool stuff I am working on!
+  Sit down, relax, pour yourself a cup of coffee and check out all the cool stuff I am working on!
 image_left: true
 images:
 - img/revoir.jpg

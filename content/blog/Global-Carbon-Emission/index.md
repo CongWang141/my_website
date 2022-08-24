@@ -48,7 +48,7 @@ Build a function to choose columns which are not all data are NA. Then select th
 
 ```r
 not_all_na <- function(x) any(!is.na(x))
-d_comp <- select(d, where(not_all_na),  
+d_comp <- select(d, where(not_all_na),
                             -"Indicator.Name", -"Indicator.Code")
 ```
 
@@ -58,14 +58,15 @@ The world total carbon emission is contained in the data, with country name *Wor
 Pick out the data for **World**, convert it into panel data.
 
 ```r
-world <- d_comp[d_comp$Country.Name=="World", ]
-world_p <- pivot_longer(world, names_to="year", values_to = "co2", cols = starts_with("X"))
+world <- d_comp[d_comp$Country.Name == "World", ]
+world_p <- pivot_longer(world, names_to = "year", values_to = "co2",
+                               cols = starts_with("X"))
 ```
 
 Remove the X in front of each year, and declare it is number.
 
 ```r
-world_p$year <- as.numeric(substr(world_p$year, 2, 5)) 
+world_p$year <- as.numeric(substr(world_p$year, 2, 5))
 ```
 
 
@@ -73,10 +74,10 @@ world_p$year <- as.numeric(substr(world_p$year, 2, 5))
 
 ```r
 library(ggplot2)
-p1 <- ggplot(data = world_p, aes(x=year, y=co2/1000000))
-p1 + geom_line(color="steelblue") + 
-  scale_x_continuous(breaks=seq(1988,2021,2))+
-  scale_y_continuous(breaks=seq(17, 34, 2)) + ylab("Co2") + 
+p1 <- ggplot(data = world_p, aes(x = year, y = co2/1000000))
+p1 + geom_line(color = "steelblue") +
+  scale_x_continuous(breaks = seq(1988, 2021, 2)) +
+  scale_y_continuous(breaks = seq(17, 34, 2)) + ylab("Co2") +
   ggtitle("in million")
 ```
 

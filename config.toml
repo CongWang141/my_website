@@ -134,6 +134,11 @@ enableEmoji = true
     name = "Research"
     title = "Research"
     url = "/talk/"
+    weight = 4
+  [[menu.header]]
+    name = "Teaching"
+    title = "Teaching"
+    url = "/collection/"
     weight = 5
   [[menu.header]]
     name = "Contact"

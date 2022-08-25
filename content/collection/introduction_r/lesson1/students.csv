@@ -1,0 +1,11 @@
+"","index","height","gender","bus_transport","weight"
+"1",1,1.2,"male",TRUE,40
+"2",2,1.3,"female ",TRUE,38
+"3",3,1.1,"female",FALSE,28
+"4",4,1.35,"male",FALSE,50
+"5",5,1.21,"female",FALSE,34
+"6",6,1.32,"female",TRUE,43
+"7",7,1.33,"male",TRUE,38
+"8",8,1.22,"female",FALSE,33
+"9",9,1.4,"male",TRUE,45
+"10",10,1.32,"male",TRUE,37

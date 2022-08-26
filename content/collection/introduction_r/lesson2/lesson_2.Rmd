@@ -1,6 +1,6 @@
 ---
 title: "Lesson 2"
-author: "Cong Wang"
+author: "Cong Wang & Renan Serenini"
 date: "2022-08-25"
 draft: false
 excerpt: 
@@ -27,7 +27,7 @@ abline(h = 0)
 abline(v = 0)
 ```
 
-## Plot a Chi-squared distribution
+## Chi-squared distribution
 Except this simple function, R can plot all the statistic distributions, here shows an example of plotting a Chi-squared distribution
 ```{r}
 curve(dchisq(x, df = 10), xlim = c(0, 40), ylab = "density", xlab = "Personal income") 
@@ -109,7 +109,7 @@ legend("topleft",
 
  As we can see from the plot, the sampling distribution of **y1** tracks the density of **N(10,1)**. As the number of observations increases, the sampling distribution gets closer to the true parameter. In another word, the probability of obtaining estimates that are close to the true value increases when the sample size increased. 
 
-## The importance of random sampling
+## Random sampling
 By using ``?sample`` we can see the documentation about this fucntion. You can add argument ``prob`` to specify the probability of an element being sampled
 
 In this section, I will show the outcomes for simulating sample mean when the i.i.d. assumption fails. First we need to sort the population, and then replicate the sampling process without i.i.d. assumption
@@ -183,7 +183,7 @@ polygon(x = c(1.5, seq(1.5, 6, 0.01), 6),
         col = "steelblue")
 ```
 
-## Sample variance, standard deviation(sd) and standard error(se)
+## Sample var, sd and se
 Usually the variance of population in unknown, so we need to estimate it, and also the s.d.
 
 ```{r}

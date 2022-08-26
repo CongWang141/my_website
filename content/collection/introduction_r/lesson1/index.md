@@ -1,6 +1,6 @@
 ---
 title: "Lesson 1"
-author: "Cong Wang"
+author: "Cong Wang & Renan Serenini"
 date: "2022-08-25"
 draft: false
 excerpt: 
@@ -8,6 +8,9 @@ weight: 1
 ---
 
 
+
+### author
+Cong Wang & Renan Serenini
 
 ## Set language
 Set system language to English. Useful to search for error solutions

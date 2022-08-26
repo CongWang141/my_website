@@ -9,6 +9,9 @@ weight: 1
 
 
 
+### author
+Cong Wang & Renan Serenini
+
 ## Introduction of plot in R
 In high school, we all studied the plot of the function `\(y=x^2 - 5\)`, which is a upward fan shape. Using R we can plot this curve
 

@@ -1,8 +1,15 @@
 ---
 title: "Lesson 3"
 author: "Cong Wang & Renan Serenini"
-date: "2022-08-26"
-output: html_document
+date: "2022-08-25"
+draft: false
+excerpt: 
+weight: 1
+links:
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/CongWang141/statistics-with-r.git
 ---
 
 
@@ -25,7 +32,7 @@ t_by_hand
 ```
 
 ```
-## [1] -0.1899364
+## [1] 0.2682671
 ```
 
 3. Perform the t-test using the function from R and compare the values
@@ -39,13 +46,13 @@ t.test(sample1)
 ## 	One Sample t-test
 ## 
 ## data:  sample1
-## t = -0.18994, df = 99, p-value = 0.8497
+## t = 0.26827, df = 99, p-value = 0.7891
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.2167145  0.1788497
+##  -0.1600991  0.2101580
 ## sample estimates:
-##   mean of x 
-## -0.01893242
+##  mean of x 
+## 0.02502947
 ```
 
 ```r

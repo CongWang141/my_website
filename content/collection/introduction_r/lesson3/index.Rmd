@@ -1,8 +1,10 @@
 ---
 title: "Lesson 3"
 author: "Cong Wang & Renan Serenini"
-date: "2022-08-26"
-output: html_document
+date: "2022-08-25"
+draft: false
+excerpt: 
+weight: 1
 links:
 - icon: github
   icon_pack: fab

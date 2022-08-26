@@ -6,8 +6,8 @@ description: |
 excerpt: null
 layout: single-series
 publishDate: "2022-08-25"
-show_author_byline: false
-show_post_date: false
+show_author_byline: true
+show_post_date: true
 show_post_thumbnail: true
 subtitle: Basic statistic theories and R
 title: Statistics with R

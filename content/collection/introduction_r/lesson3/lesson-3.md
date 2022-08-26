@@ -25,7 +25,7 @@ t_by_hand
 ```
 
 ```
-## [1] -0.8421826
+## [1] 0.4965651
 ```
 
 3. Perform the t-test using the function from R and compare the values
@@ -39,13 +39,13 @@ t.test(sample1)
 ## 	One Sample t-test
 ## 
 ## data:  sample1
-## t = -0.84218, df = 99, p-value = 0.4017
+## t = 0.49657, df = 99, p-value = 0.6206
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.3087231  0.1247426
+##  -0.1447406  0.2413668
 ## sample estimates:
-##   mean of x 
-## -0.09199026
+##  mean of x 
+## 0.04831313
 ```
 
 ```r
@@ -71,7 +71,7 @@ By using function ``replicate``
   hist(vector1)
   ```
   
-  <img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+  <img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 By using a loop
   
@@ -83,7 +83,7 @@ By using a loop
   hist(vector2)
   ```
   
-  <img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+  <img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
  We can plot those two in 1 figure
   
@@ -93,7 +93,7 @@ By using a loop
   hist(vector2)
   ```
   
-  <img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+  <img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-6-1.png" width="672" />
   
   ```r
   par(mfrow=c(1,1)) #Back to default
@@ -113,7 +113,7 @@ plot(STH, TestScore, xlim = c(0,20), ylim = c(0,15))
 abline(a=0, b=0.5)  #a=intercept b=slope. 
 ```
 
-<img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 Including an intercept 
 
@@ -123,7 +123,7 @@ plot(STH, TestScore, xlim = c(0,20), ylim = c(0,15))
 abline(a=2, b=0.5)  
 ```
 
-<img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 ## Estimate coefficient
 We need some packages for this session
@@ -195,7 +195,7 @@ plot(score ~ STR,
      ylab = "Test Score (Y)")
 ```
 
-<img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 ```r
 cor(CASchools$STR, CASchools$score) #Correlation. Negative, but weak
@@ -278,7 +278,7 @@ plot(score ~ STR,
 abline(linear_model) 
 ```
 
-<img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 ## Measure of fit
 R provides a bunch of summary statistics
@@ -378,7 +378,7 @@ abline(mod_simple, col = "red")
 lines(sort(X), prediction)
 ```
 
-<img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 ```r
 #E(Ei|Xi) varies with the Xi.
@@ -415,7 +415,7 @@ plot(x = Date,
      xlab = "Time")
 ```
 
-<img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 The  level of today's employment is correlated with tomorrows employment level. Thus, the i.i.d. assumption is violated.
 
@@ -447,7 +447,7 @@ abline(fit)
 abline(fitWithoutOutlier, col = "red")
 ```
 
-<img src="/collection/introduction_r/lesson3/lesson 3_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="/collection/introduction_r/lesson3/lesson-3_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 ## Exercise 
 We can check the unbiasedness and consistency of OLS estimators via MONTE CARLO simulations

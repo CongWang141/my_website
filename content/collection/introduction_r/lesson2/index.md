@@ -1,10 +1,15 @@
 ---
 title: "Lesson 2"
-author: "Cong Wang"
+author: "Cong Wang & Renan Serenini"
 date: "2022-08-25"
 draft: false
 excerpt: 
 weight: 1
+links:
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/CongWang141/statistics-with-r.git
 ---
 
 
@@ -19,7 +24,7 @@ In high school, we all studied the plot of the function `\(y=x^2 - 5\)`, which i
 curve(x^2 - 5)
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" />
 
 We can include some options to make the plot better, also add horizontal and vertical lines to this plot 
 
@@ -29,16 +34,16 @@ abline(h = 0)
 abline(v = 0)
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-## Plot a Chi-squared distribution
+## Chi-squared distribution
 Except this simple function, R can plot all the statistic distributions, here shows an example of plotting a Chi-squared distribution
 
 ```r
 curve(dchisq(x, df = 10), xlim = c(0, 40), ylab = "density", xlab = "Personal income") 
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 ## Drawing a sample
 Here I will show you how to draw a sample from a Chi-squared distribution
@@ -130,11 +135,11 @@ legend("topleft",
        lwd = 2)
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
  As we can see from the plot, the sampling distribution of **y1** tracks the density of **N(10,1)**. As the number of observations increases, the sampling distribution gets closer to the true parameter. In another word, the probability of obtaining estimates that are close to the true value increases when the sample size increased. 
 
-## The importance of random sampling
+## Random sampling
 By using ``?sample`` we can see the documentation about this fucntion. You can add argument ``prob`` to specify the probability of an element being sampled
 
 In this section, I will show the outcomes for simulating sample mean when the i.i.d. assumption fails. First we need to sort the population, and then replicate the sampling process without i.i.d. assumption
@@ -180,7 +185,7 @@ legend("topleft",
        lwd = 2)
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 As we can see from the plot **ybar** is biased estimator if i.i.d. doesn't not hold
 
@@ -218,9 +223,9 @@ polygon(x = c(1.5, seq(1.5, 6, 0.01), 6),
         col = "steelblue")
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
-## Sample variance, standard deviation(sd) and standard error(se)
+## Sample var, sd and se
 Usually the variance of population in unknown, so we need to estimate it, and also the s.d.
 
 
@@ -245,7 +250,7 @@ plot(density(sq_y),
      lwd = 2)
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 Next, we create a loop to draw samples of 5000, 2000, 1000, 500 obeservations from a normal distribution with mean equals to 10, standard deviation equals to 3, just like what we have done before. For each sample we calulate the standard deviations, and we repeat each process for  **n = 10000** times. Finally, we plot the density of each sequence of the standard deviation we got for comparison.
 
@@ -273,7 +278,7 @@ legend("topleft",
        lwd = 2)
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 From the plot, we can see that when the sample size is bigger, the estimate is closer to the true value.
 
@@ -354,7 +359,7 @@ curve(dnorm(x),
       lwd = 2)
 ```
 
-<img src="/collection/introduction_r/lesson2/lesson_2_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 ## Confidence interval
 

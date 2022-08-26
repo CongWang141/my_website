@@ -3,6 +3,11 @@ title: "Lesson 3"
 author: "Cong Wang & Renan Serenini"
 date: "2022-08-26"
 output: html_document
+links:
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/CongWang141/statistics-with-r.git
 ---
 
 ```{r setup, include=FALSE}

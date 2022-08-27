@@ -3,7 +3,7 @@ title: "Global Carbon Emission Analysis"
 author: "Cong Wang"
 date: "2022-07-30"
 
-excerpt: This airticle analyize the globle carobon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. It breaks down the global carbon emission and decomposes the trend.
+excerpt: This airticle analyize the globle carobon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. It breaks down the global carbon emission and analyize the trend.
 tags: 
 - Carbon Emission
 

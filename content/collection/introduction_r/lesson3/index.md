@@ -24,7 +24,7 @@ Cong Wang & Renan Serenini
 sample1 <- rnorm(100)
 ```
 
-2. Perform a t-test "by hands" (without the R function)
+2. Perform a t-test "by hand" (without the R function)
 
 ```r
 t_by_hand <- mean(sample1)/sqrt(var(sample1)/100)
@@ -32,7 +32,7 @@ t_by_hand
 ```
 
 ```
-## [1] 0.2682671
+## [1] 0.8394672
 ```
 
 3. Perform the t-test using the function from R and compare the values
@@ -46,13 +46,13 @@ t.test(sample1)
 ## 	One Sample t-test
 ## 
 ## data:  sample1
-## t = 0.26827, df = 99, p-value = 0.7891
+## t = 0.83947, df = 99, p-value = 0.4032
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1600991  0.2101580
+##  -0.1068306  0.2635125
 ## sample estimates:
 ##  mean of x 
-## 0.02502947
+## 0.07834096
 ```
 
 ```r

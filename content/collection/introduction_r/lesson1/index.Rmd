@@ -16,9 +16,6 @@ links:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### author
-Cong Wang & Renan Serenini
-
 ## Set language
 Set system language to English. Useful to search for error solutions
 ```{r}

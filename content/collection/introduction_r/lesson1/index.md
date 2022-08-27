@@ -14,9 +14,6 @@ links:
 
 
 
-### author
-Cong Wang & Renan Serenini
-
 ## Set language
 Set system language to English. Useful to search for error solutions
 

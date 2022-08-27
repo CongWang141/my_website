@@ -17,13 +17,6 @@ categories:
 draft: false
 
 ---
-<style type="text/css">
-  h1,h2,h3{
-  font-size: 16pt;
-  color: steelblue
-}
-</style>
-
 
 
 

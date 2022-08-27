@@ -14,9 +14,6 @@ links:
 
 
 
-### author
-Cong Wang & Renan Serenini
-
 ## Introduction of plot in R
 In high school, we all studied the plot of the function `\(y=x^2 - 5\)`, which is a upward fan shape. Using R we can plot this curve
 
@@ -36,7 +33,7 @@ abline(v = 0)
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-## Chi-squared distribution
+## Plot a Chi-squared distribution
 Except this simple function, R can plot all the statistic distributions, here shows an example of plotting a Chi-squared distribution
 
 ```r
@@ -139,7 +136,7 @@ legend("topleft",
 
  As we can see from the plot, the sampling distribution of **y1** tracks the density of **N(10,1)**. As the number of observations increases, the sampling distribution gets closer to the true parameter. In another word, the probability of obtaining estimates that are close to the true value increases when the sample size increased. 
 
-## Random sampling
+## The importance of random sampling
 By using ``?sample`` we can see the documentation about this fucntion. You can add argument ``prob`` to specify the probability of an element being sampled
 
 In this section, I will show the outcomes for simulating sample mean when the i.i.d. assumption fails. First we need to sort the population, and then replicate the sampling process without i.i.d. assumption
@@ -225,7 +222,7 @@ polygon(x = c(1.5, seq(1.5, 6, 0.01), 6),
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
-## Sample var, sd and se
+## Sample variance, standard deviation(sd) and standard error(se)
 Usually the variance of population in unknown, so we need to estimate it, and also the s.d.
 
 

@@ -25,7 +25,7 @@ Cong Wang & Renan Serenini
 sample1 <- rnorm(100)
 ```
 
-2. Perform a t-test "by hands" (without the R function)
+2. Perform a t-test "by hand" (without the R function)
 ```{r}
 t_by_hand <- mean(sample1)/sqrt(var(sample1)/100)
 t_by_hand

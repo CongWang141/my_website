@@ -6,7 +6,7 @@ tags:
 - R
 categories:
 - Financial models
-excerpt: One fundamental assumptions for classic linear regression model is **homoskedasticity**, which mean the variance of the error term is constant. But with financial data, we often observe time-varying variance namely **heteroskedasticity**. We know that a GMM model would be more suitable in such case. This might be the first time for most students countering such a concept.
+excerpt: One basic assumptions for classic linear regression model is **homoskedasticity**, which mean the variance of the error term is constant. But with financial data, we often observe time-varying variance namely **heteroskedasticity**. We know that a GMM model would be more suitable in such case. This might be the first time for most students countering such a concept.
 
 
 ---
@@ -242,7 +242,7 @@ fit_garch
 ## 4    50      8988            0
 ## 
 ## 
-## Elapsed time : 0.2525151
+## Elapsed time : 0.2385671
 ```
 
 

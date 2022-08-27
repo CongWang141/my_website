@@ -1,0 +1,200 @@
+---
+title: "GARCH Model with R"
+author: "Cong Wang"
+date: "2022-08-04"
+tags:
+- R
+categories:
+- Financial models
+excerpt: One fundamental assumptions for classic linear regression model is **homoskedasticity**, which mean the variance of the error term is constant. But with financial data, we often observe time-varying variance namely **heteroskedasticity**. We know that a GMM model would be more suitable in such case. This might be the first time for most students countering such a concept.
+
+
+---
+
+
+
+<style type="text/css">
+  h1,h2,h3{
+  font-size: 16pt;
+  color: steelblue
+}
+</style>
+<div id="model-introduction" class="section level1">
+<h1>Model Introduction</h1>
+<p>One fundamental assumptions for classic linear regression model is <strong>homoskedasticity</strong>, which mean the variance of the error term is constant. But with financial data, we often observe time-varying variance namely <strong>heteroskedasticity</strong>. We know that a GMM model would be more suitable in such case. This might be the first time for most students countering such a concept.</p>
+<p><strong>GARCH model</strong> (Generalized Autoregressive Conditional Heteroskedasticity model) describes the variance of the current error term follows an <strong>ARMA</strong> model (Autoregressive Moving Average) instead of constant.</p>
+<p><span class="math display">\[y_t = x_t + \epsilon_t\]</span>
+<span class="math inline">\(y_t\)</span> is a stock return, <span class="math inline">\(x_t\)</span> is a mean reverting process, and <span class="math inline">\(\epsilon_t\)</span> is the error term. Usually <span class="math inline">\(\epsilon_t \sim N(0, \delta_t)\)</span> and <span class="math inline">\(\delta_t\)</span> is constant. But in GARCH model <span class="math inline">\(\delta_t\)</span> is time-varying and follow an ARMA process as follow:
+<span class="math display">\[\delta_t = \omega + \alpha_1 \epsilon^2_{t-1} + ... + \alpha_q \epsilon^2_{t-q} + \beta_1 \delta^2_{t-1} +...+ \beta_p \delta^2_{t-p}\]</span></p>
+<div id="use-rugarch-package-to-fit-a-garch-model" class="section level2 unnumbered">
+<h2>Use rugarch Package to Fit a GARCH Model</h2>
+<p>The easy way to fit a GARCH model is using <strong>rugarch</strong> package through those two simple steps:</p>
+<ol style="list-style-type: decimal">
+<li>Setting the model specification.</li>
+<li>Fit the model and get the parameters.</li>
+</ol>
+</div>
+</div>
+<div id="data-exploration" class="section level1">
+<h1>Data Exploration</h1>
+<div id="import-data" class="section level2">
+<h2>Import Data</h2>
+<p>In this example I gonna use the Google stock data. It is downloaded through the <strong>quantmod</strong> package.</p>
+<pre class="r"><code>library(quantmod)
+googl &lt;- getSymbols(&quot;GOOGL&quot;, from=&quot;2010-01-01&quot;, to=&quot;2022-08-03&quot;, auto.assign = F)
+head(googl[, 1:5], 5)</code></pre>
+<pre><code>##            GOOGL.Open GOOGL.High GOOGL.Low GOOGL.Close GOOGL.Volume
+## 2010-01-04   15.68944   15.75350  15.62162    15.68443     78169752
+## 2010-01-05   15.69520   15.71171  15.55405    15.61537    120067812
+## 2010-01-06   15.66216   15.66216  15.17417    15.22172    158988852
+## 2010-01-07   15.25025   15.26526  14.83108    14.86737    256315428
+## 2010-01-08   14.81481   15.09635  14.74249    15.06557    188783028</code></pre>
+<p>Calculate daily return.</p>
+<pre class="r"><code>daily_ret &lt;- (googl$GOOGL.Close-stats::lag(googl$GOOGL.Close))/stats::lag(googl$GOOGL.Close)</code></pre>
+<p>Convet the data into data frame, and change the row and column names.</p>
+<pre class="r"><code>daily_ret &lt;- data.frame(index(daily_ret), daily_ret)
+colnames(daily_ret) &lt;- c(&quot;date&quot;, &quot;return&quot;)
+rownames(daily_ret) &lt;- 1:nrow(daily_ret)</code></pre>
+</div>
+<div id="plot-the-return" class="section level2">
+<h2>Plot the Return</h2>
+<pre class="r"><code>library(ggplot2)
+p1 &lt;- ggplot(daily_ret, aes(x=date, y=return))
+p1 + geom_line(colour=&quot;steelblue&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>As it shows in the plot, the return of stock is not stationary. Approximately the mean is 0, but the volatility seems to be random. In the following, I will plot the histogram of the return and compare it with normal distribution.</p>
+<pre class="r"><code>p2 &lt;- ggplot(daily_ret) 
+
+p2 + geom_histogram(aes(x=return, y=..density..), binwidth = 0.005, color=&quot;steelblue&quot;, fill=&quot;grey&quot;, size=1) +
+  stat_function(fun = dnorm, args = list(mean = mean(daily_ret$return, na.rm = T), sd = sd(daily_ret$return, na.rm = T)), size=1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><strong>1. Skewness</strong></p>
+<p>As we can see from the plot the return is not symmetrically distributed, rather it is positive skewed (or right skewed). A positive skewness indicating on average it gives us a positive return. But the level of skewness is not very high. <em>p.s. If the distribution is highly right skewed we can use a log transformation to convert it into normal in avioding any misleading results.</em></p>
+<p><strong>2. Kurtosis</strong></p>
+<p>The plot show us positive Kurtosis comparing with normal distribution. Kurtosis can be used as a measure of risk. A large Kurtosis is associated with a high level of risk because it indicates that there are high probabilities of extremely large and small returns (<strong>Heavy-tailed</strong>). Meanwhile, a small kurtosis shows a moderate level of risk for the probabilities of extreme returns are relatively low.</p>
+</div>
+<div id="calculate-the-monthly-volatility" class="section level2">
+<h2>Calculate the Monthly Volatility</h2>
+<p>Convert back the data frame to xts, then use <code>rollapply</code> to calculate rolling volatility. For monthly rolling volatility I choose 20 trading days for one moth.</p>
+<pre class="r"><code>library(PerformanceAnalytics)
+library(xts)
+daily_ret_xts &lt;- xts(daily_ret[,-1], order.by=daily_ret[,1])
+realizedvol &lt;- rollapply(daily_ret_xts, width = 20, FUN=sd.annualized)</code></pre>
+<p>Convert back the xts data to dataframe.</p>
+<pre class="r"><code>vol &lt;- data.frame(index(realizedvol), realizedvol)
+colnames(vol) &lt;- c(&quot;date&quot;, &quot;volatility&quot;)</code></pre>
+<p>Plot the monthly volatility.</p>
+<pre class="r"><code>p3 &lt;- ggplot(vol, aes(x=date, y=volatility))
+p3 +
+  geom_line( color=&quot;steelblue&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We can see that most of the time the volatility is around 0.25, while there are 4 times the volatility become very high.</p>
+</div>
+</div>
+<div id="fit-a-garch-model" class="section level1">
+<h1>Fit a GARCH Model</h1>
+<div id="model-specification" class="section level2">
+<h2>1. Model Specification</h2>
+<p>Setting the model specification using the <code>ugarchspec</code> function.</p>
+<pre class="r"><code>library(rugarch)
+garch_spec &lt;- ugarchspec(variance.model=list(model=&quot;sGARCH&quot;, garchOrder=c(1,1)), mean.model=list(armaOrder=c(0,0)))</code></pre>
+<p>For the standard GARCH model, I specify a constant to mean ARMA model, which means that arma0rder = c(0,0). We consider the GARCH(1,1) model and the distribution of the conditional error term is the normal distribution.</p>
+</div>
+<div id="fit-the-model" class="section level2">
+<h2>2. Fit the Model</h2>
+<pre class="r"><code>fit_garch &lt;- ugarchfit(spec = garch_spec, data = vol[-c(1:19),2])
+fit_garch</code></pre>
+<pre><code>## 
+## *---------------------------------*
+## *          GARCH Model Fit        *
+## *---------------------------------*
+## 
+## Conditional Variance Dynamics    
+## -----------------------------------
+## GARCH Model  : sGARCH(1,1)
+## Mean Model   : ARFIMA(0,0,0)
+## Distribution : norm 
+## 
+## Optimal Parameters
+## ------------------------------------
+##         Estimate  Std. Error   t value Pr(&gt;|t|)
+## mu      0.183618    0.001297 141.60640  0.00000
+## omega   0.000276    0.000027  10.22687  0.00000
+## alpha1  0.999000    0.033681  29.66070  0.00000
+## beta1   0.000000    0.007195   0.00001  0.99999
+## 
+## Robust Standard Errors:
+##         Estimate  Std. Error   t value Pr(&gt;|t|)
+## mu      0.183618    0.010063 18.247557 0.000000
+## omega   0.000276    0.000121  2.285651 0.022275
+## alpha1  0.999000    0.084218 11.862082 0.000000
+## beta1   0.000000    0.005298  0.000014 0.999989
+## 
+## LogLikelihood : 4348.208 
+## 
+## Information Criteria
+## ------------------------------------
+##                     
+## Akaike       -2.7600
+## Bayes        -2.7523
+## Shibata      -2.7600
+## Hannan-Quinn -2.7572
+## 
+## Weighted Ljung-Box Test on Standardized Residuals
+## ------------------------------------
+##                         statistic p-value
+## Lag[1]                       1862       0
+## Lag[2*(p+q)+(p+q)-1][2]      2695       0
+## Lag[4*(p+q)+(p+q)-1][5]      4905       0
+## d.o.f=0
+## H0 : No serial correlation
+## 
+## Weighted Ljung-Box Test on Standardized Squared Residuals
+## ------------------------------------
+##                         statistic p-value
+## Lag[1]                     0.1021  0.7493
+## Lag[2*(p+q)+(p+q)-1][5]    0.1275  0.9969
+## Lag[4*(p+q)+(p+q)-1][9]    0.2006  0.9999
+## d.o.f=2
+## 
+## Weighted ARCH LM Tests
+## ------------------------------------
+##             Statistic Shape Scale P-Value
+## ARCH Lag[3]  0.004844 0.500 2.000  0.9445
+## ARCH Lag[5]  0.040714 1.440 1.667  0.9963
+## ARCH Lag[7]  0.062791 2.315 1.543  0.9998
+## 
+## Nyblom stability test
+## ------------------------------------
+## Joint Statistic:  1.2256
+## Individual Statistics:             
+## mu     0.2599
+## omega  0.4897
+## alpha1 0.6476
+## beta1  0.4083
+## 
+## Asymptotic Critical Values (10% 5% 1%)
+## Joint Statistic:          1.07 1.24 1.6
+## Individual Statistic:     0.35 0.47 0.75
+## 
+## Sign Bias Test
+## ------------------------------------
+##                    t-value   prob sig
+## Sign Bias           1.2671 0.2052    
+## Negative Sign Bias  0.3633 0.7164    
+## Positive Sign Bias  1.0105 0.3123    
+## Joint Effect        2.3665 0.4999    
+## 
+## 
+## Adjusted Pearson Goodness-of-Fit Test:
+## ------------------------------------
+##   group statistic p-value(g-1)
+## 1    20      7769            0
+## 2    30      7843            0
+## 3    40      9979            0
+## 4    50      8988            0
+## 
+## 
+## Elapsed time : 0.240571</code></pre>
+</div>
+</div>

@@ -1,0 +1,317 @@
+---
+title: "Lesson 3"
+author: "Cong Wang & Renan Serenini"
+date: "2022-08-25"
+draft: false
+excerpt: 
+weight: 1
+links:
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/CongWang141/statistics-with-r.git
+---
+
+
+
+<div id="author" class="section level3">
+<h3>author</h3>
+<p>Cong Wang &amp; Renan Serenini</p>
+</div>
+<div id="solution-to-lesson-2" class="section level2">
+<h2>Solution to lesson 2</h2>
+<ol style="list-style-type: decimal">
+<li>Draw a sample of size=100 from a Standard Normal Distribution</li>
+</ol>
+<pre class="r"><code>sample1 &lt;- rnorm(100)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Perform a t-test “by hands” (without the R function)</li>
+</ol>
+<pre class="r"><code>t_by_hand &lt;- mean(sample1)/sqrt(var(sample1)/100)
+t_by_hand</code></pre>
+<pre><code>## [1] 0.02385574</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Perform the t-test using the function from R and compare the values</li>
+</ol>
+<pre class="r"><code>t.test(sample1)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  sample1
+## t = 0.023856, df = 99, p-value = 0.981
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -0.1883120  0.1928951
+## sample estimates:
+##   mean of x 
+## 0.002291578</code></pre>
+<pre class="r"><code>t.test(sample1)$statistic==mean(sample1)/sqrt(var(sample1)/100) #Check!</code></pre>
+<pre><code>##    t 
+## TRUE</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Interpret the result of the t-test
+NUll hypothesis: true mean is equal to zero
+According to the statistics, we do not reject the null hypothesis at the level of 95%</p></li>
+<li><p>Repeat <strong>step 1.</strong> 1000 times, storing the mean on a vector and plot the histogram
+For this exercise we do do it in two different ways</p></li>
+</ol>
+<p>By using function <code>replicate</code></p>
+<pre class="r"><code>vector1 &lt;- replicate(expr = mean(rnorm(100)), n=1000)
+hist(vector1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>By using a loop</p>
+<pre class="r"><code>vector2 &lt;- numeric(1000)
+for (i in 1:1000) {
+vector2[i] &lt;- mean(rnorm(100))
+}
+hist(vector2)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>We can plot those two in 1 figure</p>
+<pre class="r"><code>par(mfrow=c(1,2)) #Command to plot more than 1 figure at the same time
+hist(vector1)
+hist(vector2)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>par(mfrow=c(1,1)) #Back to default</code></pre>
+<p>Simple linear regression</p>
+<pre class="r"><code>STH &lt;- c(12,15,10,20,8,12,16,13,5,9,12) #Hours studied
+TestScore &lt;- 0.5*STH + rnorm(11,0,1) #Exam score as a function of studied hours + random error</code></pre>
+<p>A simple linear regression is <span class="math display">\[y=\beta_1x+\epsilon\]</span></p>
+<pre class="r"><code>plot(STH, TestScore, xlim = c(0,20), ylim = c(0,15))
+abline(a=0, b=0.5)  #a=intercept b=slope. </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Including an intercept</p>
+<pre class="r"><code>TestScore &lt;- 2+ 0.5*STH + rnorm(11,0,1) # Data Generation Process of Exam score
+plot(STH, TestScore, xlim = c(0,20), ylim = c(0,15))
+abline(a=2, b=0.5)  </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="estimate-coefficient" class="section level2">
+<h2>Estimate coefficient</h2>
+<p>We need some packages for this session</p>
+<pre class="r"><code>library(AER) #Provides some datasets
+library(MASS) #Collection of functions for applied statistics</code></pre>
+<p>Exploring the dataset</p>
+<pre class="r"><code>data(CASchools) #california Schools Dataset
+View(CASchools)</code></pre>
+<pre class="r"><code>#Create a new Variable, Students-teacher ratio.
+#Compute STR and append it to CASchools
+CASchools$STR &lt;- CASchools$students/CASchools$teachers 
+
+#Compute TestScore (average between Math and Read) and append it to the dataframe
+CASchools$score &lt;- (CASchools$read + CASchools$math)/2     
+
+#Compute sample averages of STR and score
+avg_STR &lt;- mean(CASchools$STR) 
+avg_score &lt;- mean(CASchools$score)
+
+#Compute sample standard deviations of STR and score
+sd_STR &lt;- sd(CASchools$STR) 
+sd_score &lt;- sd(CASchools$score)</code></pre>
+<pre class="r"><code>#Creating a summary dataframe
+# set up a vector of percentiles and compute the quantiles 
+quantiles &lt;- c(0.10, 0.25, 0.4, 0.5, 0.6, 0.75, 0.9)
+quant_STR &lt;- quantile(CASchools$STR, quantiles) #Arguments: series and vector of percentiles
+
+quant_score &lt;- quantile(CASchools$score, quantiles)
+
+# gather everything in a data.frame 
+DistributionSummary &lt;- data.frame(Average = c(avg_STR, avg_score), 
+                                  StandardDeviation = c(sd_STR, sd_score), 
+                                  quantile = rbind(quant_STR, quant_score))
+#rbind combines two or more vectors
+DistributionSummary</code></pre>
+<pre><code>##               Average StandardDeviation quantile.10. quantile.25. quantile.40.
+## quant_STR    19.64043          1.891812      17.3486     18.58236     19.26618
+## quant_score 654.15655         19.053347     630.3950    640.05000    649.06999
+##             quantile.50. quantile.60. quantile.75. quantile.90.
+## quant_STR       19.72321      20.0783     20.87181     21.86741
+## quant_score    654.45000     659.4000    666.66249    678.85999</code></pre>
+<pre class="r"><code>#Plot
+plot(score ~ STR, 
+     data = CASchools,
+     main = &quot;Scatterplot of TestScore and STR&quot;, 
+     xlab = &quot;STR (X)&quot;,
+     ylab = &quot;Test Score (Y)&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>cor(CASchools$STR, CASchools$score) #Correlation. Negative, but weak</code></pre>
+<pre><code>## [1] -0.2263627</code></pre>
+</div>
+<div id="ols-estimation" class="section level2">
+<h2>OLS estimation</h2>
+<p>First we try to get the estimation by hands</p>
+<p>Function <code>attach</code> allows to use the variables contained in CASchools directly. <strong>BE CAREFUL! REMEMBER TO DETACH</strong></p>
+<pre class="r"><code>attach(CASchools)</code></pre>
+<p>To get the estimate of <span class="math inline">\(\hat{\beta_1}\)</span> and <span class="math inline">\(\hat{\beta_0}\)</span></p>
+<pre class="r"><code>beta_1 &lt;- sum((STR - mean(STR)) * (score - mean(score))) / sum((STR - mean(STR))^2)
+beta_0 &lt;- mean(score) - beta_1 * mean(STR)
+beta_1</code></pre>
+<pre><code>## [1] -2.279808</code></pre>
+<pre class="r"><code>beta_0</code></pre>
+<pre><code>## [1] 698.9329</code></pre>
+<p>R also provides packages to get the estimates, it will get the exactly same value as we did by hands</p>
+<pre class="r"><code>linear_model &lt;- lm(score ~ STR, data = CASchools) 
+summary(linear_model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = score ~ STR, data = CASchools)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -47.727 -14.251   0.483  12.822  48.540 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 698.9329     9.4675  73.825  &lt; 2e-16 ***
+## STR          -2.2798     0.4798  -4.751 2.78e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.58 on 418 degrees of freedom
+## Multiple R-squared:  0.05124,    Adjusted R-squared:  0.04897 
+## F-statistic: 22.58 on 1 and 418 DF,  p-value: 2.783e-06</code></pre>
+<p>Then we can plot the data, and add the regression line</p>
+<pre class="r"><code># plot the data
+plot(score ~ STR, 
+     data = CASchools,
+     main = &quot;Scatterplot of TestScore and STR&quot;, 
+     xlab = &quot;STR (X)&quot;,
+     ylab = &quot;Test Score (Y)&quot;,
+     xlim = c(10, 30),
+     ylim = c(600, 720))
+
+# add the regression line
+abline(linear_model) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="measure-of-fit" class="section level2">
+<h2>Measure of fit</h2>
+<p>R provides a bunch of summary statistics</p>
+<pre class="r"><code>summary(linear_model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = score ~ STR, data = CASchools)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -47.727 -14.251   0.483  12.822  48.540 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 698.9329     9.4675  73.825  &lt; 2e-16 ***
+## STR          -2.2798     0.4798  -4.751 2.78e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.58 on 418 degrees of freedom
+## Multiple R-squared:  0.05124,    Adjusted R-squared:  0.04897 
+## F-statistic: 22.58 on 1 and 418 DF,  p-value: 2.783e-06</code></pre>
+<pre class="r"><code>ls(summary(linear_model)) #Check available outputs</code></pre>
+<pre><code>##  [1] &quot;adj.r.squared&quot; &quot;aliased&quot;       &quot;call&quot;          &quot;coefficients&quot; 
+##  [5] &quot;cov.unscaled&quot;  &quot;df&quot;            &quot;fstatistic&quot;    &quot;r.squared&quot;    
+##  [9] &quot;residuals&quot;     &quot;sigma&quot;         &quot;terms&quot;</code></pre>
+<pre class="r"><code>r_squared &lt;- summary(linear_model)$&quot;r.squared&quot; #Accessing a single output
+mod_summary &lt;- summary(linear_model) #Put the outputs in an object</code></pre>
+<p>we can also get the <span class="math inline">\(R^2\)</span> by hands (without all those packages)</p>
+<pre class="r"><code>SSR &lt;- sum(mod_summary$residuals^2)
+TSS &lt;- sum((score - mean(score))^2)
+R2 &lt;- 1 - SSR/TSS; R2 </code></pre>
+<pre><code>## [1] 0.05124009</code></pre>
+<pre class="r"><code>summary(linear_model)$&quot;r.squared&quot; </code></pre>
+<pre><code>## [1] 0.05124009</code></pre>
+<pre class="r"><code>#Same value!
+detach(CASchools)</code></pre>
+</div>
+<div id="ols-assumptions" class="section level2">
+<h2>OLS assumptions</h2>
+<p>Assumption 1 There is no endogeneity problem <span class="math inline">\(E(\epsilon_i|x_i)=0\)</span>. The conditional mean should be zero.</p>
+<pre class="r"><code># set a seed to make the results reproducible
+set.seed(321)
+
+#Generate the data 
+X &lt;- runif(50, min = -5, max = 5)
+u &lt;- rnorm(50, 0,1)  
+
+# Data generating process (The true relationship)
+Y &lt;- X^2 + 2 * X + u                
+
+# estimate a simple regression model 
+mod_simple &lt;- lm(Y ~ X)
+
+# predict using a quadratic model 
+prediction &lt;- predict(lm(Y ~ X + I(X^2)), data.frame(X = sort(X)))</code></pre>
+<pre class="r"><code># plot the results
+plot(Y ~ X)
+abline(mod_simple, col = &quot;red&quot;)
+lines(sort(X), prediction)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<pre class="r"><code>#E(Ei|Xi) varies with the Xi.</code></pre>
+<p><strong>endogeneity assumption violated</strong></p>
+<p>Assumption 2 The obeservations are i.i.d. There is a random sampling of observations.</p>
+<pre class="r"><code># set seed
+set.seed(123)
+
+# generate a date vector
+Date &lt;- seq(as.Date(&quot;1951/1/1&quot;), as.Date(&quot;2000/1/1&quot;), &quot;years&quot;)
+
+# initialize the employment vector
+X &lt;- c(5000, rep(NA, length(Date)-1))
+
+# generate time series observations with random influences
+for (i in 2:length(Date)) {
+  X[i] &lt;- -50 + 0.98 * X[i-1] + rnorm(n = 1, sd = 200)
+}</code></pre>
+<pre class="r"><code>#plot the results
+plot(x = Date, 
+     y = X, 
+     type = &quot;l&quot;, 
+     col = &quot;steelblue&quot;, 
+     ylab = &quot;Workers&quot;, 
+     xlab = &quot;Time&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>The level of today’s employment is correlated with tomorrows employment level. Thus, the i.i.d. assumption is violated.</p>
+<p>Assumption 3</p>
+<pre class="r"><code># set seed
+set.seed(123)
+
+# generate the data
+X &lt;- sort(runif(10, min = 30, max = 70))
+Y &lt;- rnorm(10 , mean = 200, sd = 50)
+Y[9] &lt;- 2000  #Create an outlier
+
+
+# fit model with outlier
+fit &lt;- lm(Y ~ X)
+
+# fit model without outlier
+fitWithoutOutlier &lt;- lm(Y[-9] ~ X[-9])</code></pre>
+<pre class="r"><code># plot the results
+
+plot(Y ~ X,pch=16)
+abline(fit)
+abline(fitWithoutOutlier, col = &quot;red&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+<div id="exercise" class="section level2">
+<h2>Exercise</h2>
+<p>We can check the unbiasedness and consistency of OLS estimators via MONTE CARLO simulations</p>
+<p>Routine:</p>
+<ol style="list-style-type: decimal">
+<li><p>Consider the model <span class="math inline">\(y=\beta_0+\beta_1x+\mu\)</span></p></li>
+<li><p>Define a value to the parameters <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, creating these objects</p></li>
+<li><p>Generate the variable x, drawing a sample (size=50) from a normal distribution</p></li>
+<li><p>Generate the variable <span class="math inline">\(\mu\)</span>, drawing from the standard normal distribution</p></li>
+<li><p>Create the variable <span class="math inline">\(y=\beta_0+\beta_1x+\mu\)</span></p></li>
+<li><p>Estimate the parameters via OLS.</p></li>
+<li><p>Get the coefficients. The values might be close to the parameters.</p></li>
+<li><p>Repeat the previous routine (steps 3 to 7) 1000 times. Tip: use “for”. For every estimation, store the coefficients <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> in empty vectors previously created.</p></li>
+<li><p>Get the mean of each vector (<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>).</p></li>
+</ol>
+<p>Are they close to the true parameters? Are the OLS estimators biased?</p>
+<ol start="10" style="list-style-type: decimal">
+<li><p>Plot the histogram of each of them</p></li>
+<li><p>REPEAT ALL THE SIMULATIONS, BUT WITH SAMPLE SIZE EQUAL TO 200, THEN EQUAL TO 1000. Plot the 3 histograms (sample size =50, 200 and 1000) of <span class="math inline">\(\beta_0\)</span> side by side to compare.</p></li>
+</ol>
+<p>Do the same with the 3 histograms of <span class="math inline">\(\beta_1\)</span>?</p>
+<p>TIP: USE THE SAME RANGE ON X-AXIS (argument xlim= ) TO A BETTER COMPARISON</p>
+<p>Are the OLS estimators consistent?</p>
+</div>

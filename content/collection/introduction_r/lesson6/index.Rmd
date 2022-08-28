@@ -1,0 +1,209 @@
+---
+title: "Lesson 6"
+author: "Cong Wang & Renan Serenini"
+date: "2022-08-25"
+draft: false
+excerpt: 
+weight: 1
+links:
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/CongWang141/statistics-with-r.git
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### author
+Cong Wang & Renan Serenini
+
+## Solutions to lesson 5
+
+1. Load the dataset 'mtcars' (check the help for information about it)
+
+2. Check the descriptive statistics of the variables and the correlation
+
+```{r, message=FALSE}
+data(mtcars)
+?mtcars
+```
+
+3. Estimate a multiple linear model to identify the variables that impact the fuel consumption of a car
+
+```{r}
+attach(mtcars)
+model1 <- lm(mpg~cyl+wt)
+summary(model1)
+plot(model1$residuals)
+```
+
+4. Test the assumption of heteroskedasticity
+
+```{r, message=FALSE}
+library(lmtest)
+bptest(model1) #NUll: The error variances are all equal
+```
+
+5. Interpret the results of the model
+
+6. From the same model, include another variable and repeat the tests and interpretations
+
+```{r}
+#New variable
+model2 <- lm(mpg~cyl+wt+gear)
+summary(model2)
+```
+
+7. What was the effect of including this new variable? Would you keep it in the model?
+
+8. Create a dummy variable and include it in your model, commenting the result.
+
+```{r, message=FALSE}
+#Create a dummy variable
+mtcars$carburetors <- ifelse(carb>2,1,0)
+attach(mtcars)
+model3 <- lm(mpg~cyl+wt+carburetors)
+summary(model3)
+```
+
+9. Generate random data for a new car and predict the values of it's fuel consumption based on your model
+
+```{r}
+#Predict a random car
+Panda <- cbind('cyl'=numeric(1), 'wt'=numeric(1))
+Panda[1] <-   sample(mtcars$cyl, size=1)+rnorm(1) #Sample + random error term
+Panda[2] <-   sample(mtcars$wt, size=1)+rnorm(1)  
+Panda <- data.frame(Panda) #Transform into data frame to use function predict.lm
+predict.lm(model1, Panda)
+```
+
+check the function ``predict`` and ``predict.lm`` if you are not familiar with them
+```{r}
+?predict
+?predict.lm
+```
+
+## Hypothesis Tests in Multiple Regression 
+
+```{r, message=FALSE}
+library(AER)
+library(stargazer)
+data(CASchools)
+```
+
+```{r}
+#Our new variables
+CASchools$STR <- CASchools$students/CASchools$teachers #STR of classes       
+CASchools$score <- (CASchools$read + CASchools$math)/2 #Score
+
+model <- lm(score ~ STR + english, data = CASchools)
+coeftest(model, vcov. = vcovHC, type = "HC1")
+```
+
+```{r}
+# compute two-sided p-value MANUALLY
+t_b1=coeftest(model, vcov. = vcovHC, type = "HC1")[2, 3];t_b1 #t_statistic
+p_b1=pt(abs(t_b1),df = model$df.residual); p_b1 #Distribution functions
+p_value_b1=2 * (1 - p_b1); p_value_b1
+```
+
+## Confidence Intervals in Multiple Regression 
+
+warning: confint does not use robust standard errors
+
+```{r}
+model <- lm(score ~ STR + english, data = CASchools)
+confint(model, level = 0.9)
+```
+
+```{r}
+# compute robust standard errors
+rob_se <- diag(vcovHC(model, type = "HC1"))^0.5
+rob_se
+```
+
+```{r}
+# compute robust 95% confidence intervals
+rbind("lower" = coef(model) - qnorm(0.975) * rob_se,
+      "upper" = coef(model) + qnorm(0.975) * rob_se)
+```
+
+```{r}
+# compute robust 90% confidence intervals
+rbind("lower" = coef(model) - qnorm(0.95) * rob_se,
+      "upper" = coef(model) + qnorm(0.95) * rob_se)
+```
+
+Let's include another variable
+```{r}
+# scale expenditure to thousands of dollars
+CASchools$expenditure <- CASchools$expenditure/1000
+```
+
+```{r}
+# estimate the model
+model <- lm(score ~ STR + english + expenditure, data = CASchools)
+summary(model)
+coeftest(model, vcov. = vcovHC, type = "HC1")
+```
+
+```{r}
+# Multicolinearity issue
+cor(CASchools$STR, CASchools$expenditure)
+```
+
+## F-Statistic 
+
+```{r}
+# estimate the multiple regression model
+model <- lm(score ~ STR + english + expenditure, data = CASchools)
+```
+
+Execute the function on the model object and provide both linear restrictions 
+
+```{r}
+linearHypothesis(model, c("STR=0", "expenditure=0"))
+#NULL: B1=B2=0
+
+# heteroskedasticity-robust F-test
+linearHypothesis(model, c("STR=0", "expenditure=0"), white.adjust = "hc1")
+```
+
+```{r}
+#Overall F-test
+linearHypothesis(model, c("STR=0", "english=0", "expenditure=0"), white.adjust = "hc1")
+summary(model)
+summary(model)$fstatistic
+ls(summary(model))
+```
+
+## Confidence Sets for Multiple Coefficients 
+
+draw the 95% confidence set for coefficients on STR and expenditure
+```{r}
+confidenceEllipse(model, 
+                  fill = T,
+                  lwd = 0,
+                  which.coef = c("STR", "expenditure"),
+                  main = "95% Confidence Set")
+```
+
+draw the **robust** 95% confidence set for coefficients on STR and expenditure, and the 95% confidence set for coefficients on STR and expenditure
+```{r}
+confidenceEllipse(model, 
+                  fill = T,
+                  lwd = 0,
+                  which.coef = c("STR", "expenditure"),
+                  main = "95% Confidence Sets",
+                  vcov. = vcovHC(model, type = "HC1"),
+                  col = "red")
+
+confidenceEllipse(model, 
+                  fill = T,
+                  lwd = 0,
+                  which.coef = c("STR", "expenditure"),
+                  add = T) #Argument add=T (TRUE)
+```
+

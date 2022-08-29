@@ -28,8 +28,8 @@ One fundamental assumptions for classic linear regression model is **homoskedast
 
 **GARCH model** (Generalized Autoregressive Conditional Heteroskedasticity model) describes the variance of the current error term follows an **ARMA** model (Autoregressive Moving Average) instead of constant. 
 
-$$y_t = x_t + \epsilon_t$$
-$y_t$ is a stock return, $x_t$ is a mean reverting process, and $\epsilon_t$ is the error term. Usually $\epsilon_t \sim N(0, \delta_t)$ and $\delta_t$ is constant. But in GARCH model $\delta_t$ is time-varying and follow an ARMA process as follow:
+$$y_t = \mu_t + \epsilon_t$$
+$y_t$ is a stock return, $\mu_t$ is a mean reverting process, and $\epsilon_t$ is the error term. $\epsilon_t=\sqrt{\delta^2}z_t$, where $z_t \sim D(0,1)$ and $D$ is a specified distribution. $\delta_t$ is time-varying and follow an ARMA process as follow:
 $$\delta_t = \omega + \alpha_1 \epsilon^2_{t-1} + ... + \alpha_q \epsilon^2_{t-q} + \beta_1 \delta^2_{t-1} +...+ \beta_p \delta^2_{t-p}$$
 
 ## Use rugarch Package to Fit a GARCH Model{-}

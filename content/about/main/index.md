@@ -8,7 +8,7 @@ show_intro: true
 intro: |
   My research covers topics in the broad area of Macro-Finance, especially in Asset Pricing, Risk Management, Machine Learning, and Financial Econometrics.
   
-  I Like documentary "Planet Earth", now "Our Planet" has better quality and the same [David Attenborough](https://attenboroughfilm.com/). Concern about climate change, try to quantify the risk in the financial market and real economy. 
+  I Like documentary "Planet Earth", now ["Our Planet"](https://www.ourplanet.com/en/) has better quality and the same David Attenborough. Concern about climate change, try to quantify the risk in the financial market and real economy. 
   
 show_outro: true
 outro: |

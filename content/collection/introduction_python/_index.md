@@ -37,9 +37,7 @@ print(x)
 y = x > 2
 y
 ```
-
     7.5
-  
     True
 
 

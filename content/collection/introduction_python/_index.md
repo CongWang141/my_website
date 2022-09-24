@@ -2906,7 +2906,6 @@ def age_a_person(person):
 age_a_person('notaperson')
 ```
 
-
     ---------------------------------------------------------------------------
 
     Exception                                 Traceback (most recent call last)

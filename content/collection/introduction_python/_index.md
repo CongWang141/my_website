@@ -42,7 +42,7 @@ y
 
 
 
-We may want to use placeholders to print strings. There are a number of ways to do that.
+We may want to use placeholders to print strings. There are a plenty of ways to do that.
 
 
 ```python

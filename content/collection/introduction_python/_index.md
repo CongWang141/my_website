@@ -1,11 +1,11 @@
 ---
 author: Cong Wang
-date: "2022-09-25"
+date: "2022-09-24"
 description: |
   It is a simple introduction about how to use Python. This in from the summer course I participited in Barcelona School of Economics.
 excerpt: null
 layout: single-series
-publishDate: "2022-09-25"
+publishDate: "2022-09-24"
 show_author_byline: true
 show_post_date: true
 show_post_thumbnail: true

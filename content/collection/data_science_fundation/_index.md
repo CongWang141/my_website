@@ -1,4 +1,3 @@
-
 ---
 author: Cong Wang
 date: "2022-10-01"
@@ -16,3 +15,5 @@ weight: 1
 ---
 
 This is an intensive 20-hour hands-on course in the foundations of data science. The course provides basic training in data analysis and machine learning with Python and R. The material covered is motivated by specific data analysis questions, and each unit concludes with a project to be done by the students.
+
+

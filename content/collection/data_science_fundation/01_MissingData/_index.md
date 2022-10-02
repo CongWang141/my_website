@@ -2,8 +2,10 @@
 author: Cong Wang
 date: "2022-10-1"
 description: |
-  It is a simple introduction about how to use Python. This in from the summer course I participited in Barcelona School of Economics.
-excerpt: It is a simple introduction about how to use Python. This in from the summer course I participited in Barcelona School of Economics.
+  Datasets in real life are rarely complete, so handling missing data is a common topic in data science. 
+The way we handle such data may have a substantial effect on our results, so caution when dealing with NAs is advisable.
+excerpt: Datasets in real life are rarely complete, so handling missing data is a common topic in data science. 
+The way we handle such data may have a substantial effect on our results, so caution when dealing with NAs is advisable.
 layout: single-series
 publishDate: "2022-10-01"
 show_author_byline: true
@@ -19,6 +21,7 @@ links:
   name: code
   url: https://github.com/CongWang141/data_science.git
 ---
+
 
 ### Handling Missing Data
 Missing data is so often, we need to handle them carefully

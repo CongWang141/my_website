@@ -17,7 +17,7 @@ links:
 - icon: github
   icon_pack: fab
   name: code
-  url: https://github.com/CongWang141/statistics-with-r.git
+  url: https://github.com/CongWang141/data_science.git
 ---
 
 ### Handling Missing Data

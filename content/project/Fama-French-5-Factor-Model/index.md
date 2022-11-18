@@ -79,6 +79,13 @@ Here I use the Amazon stock price data as an example. It is downloaded through t
 
 ```r
 library(quantmod)
+```
+
+```
+## Warning: package 'zoo' was built under R version 4.2.2
+```
+
+```r
 amazon <- getSymbols("AMZN", from="2010-01-01", to="2022-08-01", auto.assign = F)
 ```
 

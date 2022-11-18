@@ -240,3 +240,45 @@ $$
 + Validation sample 1975-1986 (12 years)
 + Testing sample 1987-2016 (30 years)
 + The rolling window is 1 year instead of each month
+
+### `2.2 The cross-section of individual stock`
+
+<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_1.png">
+
+The out of sample $R^2$ of simple OLS model is negative, indicating that it is arbitrarily worse. The neural network with 3 layers has the best out of sample proformance among all other models.
+
+<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_2.png">
+
+The model complexity has been changing constently, but the measure of the complexity is varying from different model. For example, they choose `number of characteristics` for Elastic Net and Generalized Linear model, choose `number of components` for PCR and Partial Linear Square, and choose `average tree depth` for Gradient Boosted Regression Tree.
+
+<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_3.png">
+The annual horizon analysis shows a larger magnitude of $R^2$, which indicating ML methods are able to isolate risk premiums that persist over business cycle frequencies and are not merely capturing short-lived inefficiencies.
+
+<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_4.png">
+This table shows the statistical significance of differences among models at the monthly frequncy. The Diebold-Mariano statistics are distributed $\matbb N(0,1)$ under the null no difference. The positive values in the NN3 column showing that NN3 out perform all other models.
+
+### `2.3 Which covariates matters`
+
+<img src = "https://github.com/CongWang141/image/blob/main/asset_pricing_machine_learning_5.png?raw=true">
+
+### `2.4 Portfolio forecast`
+
+They build bottom-up forecasts by aggregating individual stock return into portfolios, $w^p_{i,t}$ is the weight of stock i in portfolio p:
+$$
+\hat r^p_{t+1} = \sum^n_{i=t}w^p_{i,t} \times \hat r_{i,t+1}
+$$
+
+Translate $R^2$ into sharp ratio, which matters for mean-variance investors:
+$$
+SR^{\ast} = \sqrt \frac{SR^2 + R^2}{1-R^2}
+$$
+
+and the table below shows the improvement of sharp ratio by the using machine learning methods, which is simply $(SR^{\ast} - SR)$
+<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_7.png">
+
+Cumulative return of machine learning portfolios:
+<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_8.png">
+
+###  `3 Conclusion`
+
+This paper uses a widely studied topic -- predicting returns as a playground, testing different kinds of machine learning methods, the result shows that machine learning can help improve predicting ablity for asset returns. Most importantly this paper stands for a standard machine learning text book help new researchers and practioners understand the mystery of those methods in fintech industry. 

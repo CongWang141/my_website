@@ -1,14 +1,15 @@
 ---
-title: "Review empirical asset pricing via machine learning"
+title: "Review: empirical asset pricing via machine learning"
 author: "Cong Wang"
-date: "2022-011-17"
+date: "2022-11-17"
 
-excerpt: This article analyize the globe carobon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. It breaks down the global carbon emission and analyize the trend.
+excerpt: For a long time **machine learning** has been used in the financial industry, especially in the empirical asset pricing field. This paper conducts a comparitive analysis among different machine learning methods, set the lower bar for the out of sample predicting power for each methods. Since its publication, it already has more than 1000 citations and has become the benchmark for machine learning research.
+
 tags: 
-- Carbon Emission
+- machine learnig
 
 categories: 
-- Climate Change
+- literature review
 
 featured: true
 layout: single

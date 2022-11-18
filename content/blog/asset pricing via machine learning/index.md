@@ -3,10 +3,10 @@ title: "Review: empirical asset pricing via machine learning"
 author: "Cong Wang"
 date: "2022-11-17"
 
-excerpt: For a long time **machine learning** has been used in the financial industry, especially in the empirical asset pricing field. This paper conducts a comparitive analysis among different machine learning methods, set the lower bar for the out of sample predicting power for each methods. Since its publication, it already has more than 1000 citations and has become the benchmark for machine learning research.
+excerpt: For a long time **machine learning** has been used in the financial industry, especially in the empirical asset pricing field. This paper conducts a comparative analysis among different machine learning methods, set the lower bar for the out of sample predicting power for each methods. Since its publication, it already has more than 1000 citations and has become the benchmark for machine learning research.
 
 tags: 
-- machine learnig
+- machine learning
 
 categories: 
 - literature review

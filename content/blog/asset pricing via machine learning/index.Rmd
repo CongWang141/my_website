@@ -41,7 +41,7 @@ $$
 $$
 
 
-`\(\textbf{Assume}\)`: A balaced panel of stocks
+$\textbf{Assume}$: A balaced panel of stocks
 
 ### `1.1 Sample splitting and tuning via validation`
 
@@ -54,14 +54,14 @@ This paper they increase the training sample by a year, while maintaining a fixe
 
 ### `1.2 Simple linear`
 
-The conditional expectations `\(g^\ast (\cdot)\)` can be approximated by a linear function of the raw predictor variables and the parameter vector `\(\theta\)`
+The conditional expectations $g^\ast (\cdot)$ can be approximated by a linear function of the raw predictor variables and the parameter vector $\theta$
 
 $$
 \tag{3}
 g(Z_{i,t}; \theta) = Z'_{i,t} \theta 
 $$
 
-The estimation of the simple linear model uses a standard least squares, or `\("l_2"\)`, objective function is:
+The estimation of the simple linear model uses a standard least squares, or $"l_2"$, objective function is:
 $$
 \tag{4}
 \mathbb l(\theta) = \frac{1}{NT} \sum^N_{i=1} \sum^T_{t=1} (r_{i,t+1} - g(z_{i,t}: \theta))^2
@@ -74,8 +74,8 @@ $$
 \mathbb l_w(\theta) = \frac{1}{NT} \sum^N_{i=1} \sum^T_{t=1} w_{i,t}(r_{i,t+1} - g(z_{i,t}: \theta))^2
 $$
 
-+ `\(w_{it}\)` could be `\(\frac{1}{N}\)`, `\(N\)` is the number of stocks.
-+ `\(w_{it}\)` could be propotional to the equity market value of stocks. `in favor of large stocks`
++ $w_{it}$ could be $\frac{1}{N}$, $N$ is the number of stocks.
++ $w_{it}$ could be propotional to the equity market value of stocks. `in favor of large stocks`
 
 Heavy tails are a well-known attribut of returns. It will affect OLS estimation for its emphasis on large errors. To handle the outliers in machine learning, it is common to use `Huber robust object function` to counteract the deleterious effect of heavy-tailed observations, which is:
 
@@ -85,9 +85,9 @@ l_H(\theta) = \frac{1}{NT} \sum^N_{i=1} \sum^T_{t=1} H(r_{i,t+1} - g(z_{i,t}: \t
 $$
 
 where 
-`$$H(x;\zeta) =\begin{cases} x^2, & if \ |x| \leq \zeta \\
+$$H(x;\zeta) =\begin{cases} x^2, & if \ |x| \leq \zeta \\
                      2\zeta|x|-\zeta^2, & if \ |x| > \zeta
-       \end{cases}$$`
+       \end{cases}$$
 
 ### `1.3 Penalized linear`
 
@@ -120,7 +120,7 @@ $$
 R = (Z \Omega_K) \theta_K + \tilde E
 $$
 
-Where `\(Z\)` is `\(NT\)` x `\(P\)`, `\(\Omega_K\)` is `\(P\)` x `\(K\)`, `\(\Theta_K\)` is `\(K\)` x `\(1\)`, `\(\tilde E\)` is `\(NT\)` x `\(1\)`
+Where $Z$ is $NT$ x $P$, $\Omega_K$ is $P$ x $K$, $\Theta_K$ is $K$ x $1$, $\tilde E$ is $NT$ x $1$
 
 ### `1.5 Generalized linear`
 
@@ -137,7 +137,7 @@ $$
 g(z;\theta, p(\cdot)) = \sum^p_{j=1}p(z_j)'\theta_j
 $$
 
-where `\(p(\cdot) = (p_1(\cdot), p_2(\cdot), ..., p_k(\cdot))'\)`, `\(\theta = (\theta_1, \theta_2, ..., \theta_k)\)` is now `\(K\)` x `\(N\)`, they apply a spline series of order two: `\((a, z, (z-c_1)^2, (z-c_2)^2, ... , (z-c_{k-2})^2)\)`, where `\(c_1, c_2, ...\)` are knots.
+where $p(\cdot) = (p_1(\cdot), p_2(\cdot), ..., p_k(\cdot))'$, $\theta = (\theta_1, \theta_2, ..., \theta_k)$ is now $K$ x $N$, they apply a spline series of order two: $(a, z, (z-c_1)^2, (z-c_2)^2, ... , (z-c_{k-2})^2)$, where $c_1, c_2, ...$ are knots.
 
 Same with 1.2, they use OLS both with and without Huber robustness modification. Because the series expansion quickly mutilies the number of model parameters, they use the specialized penalization function for spline expansion setting which known as the group lasso:
 $$
@@ -157,7 +157,7 @@ $$
 + K `->` terminal nodes, 'leaves'
 + L `->` depth
 
-$ C_k(L)$ is one of the K partitions of the data, each partition is a product of up to L indicatior functions of the predictors. `\(\theta_k\)` is a constant associated with partition k, it is the sample average of outcomes with the partition.
+$ C_k(L)$ is one of the K partitions of the data, each partition is a product of up to L indicatior functions of the predictors. $\theta_k$ is a constant associated with partition k, it is the sample average of outcomes with the partition.
 
 The basic idea is to myopically optimize forecast error at the start of each branch. At each new level, choose a sorting variable from the set of predictors and the split value to maximize the discrepancy among average outcomes in each bin. The loss associated with the forecast error for a branch C is call "Impurity", which describes how similarly observations behave on either side of the split. The L2 impurity is used in this paper:
 
@@ -166,10 +166,10 @@ $$
 H(\theta, C)=\frac{1}{|C|} \sum_{z_{it} \in C}(r_{i,t} - \theta)^2
 $$
 
-|C| denotes the number of observations in set C. Given C, the optimal choice of `\(\theta\)` is: `\(\theta=\frac{1}{|C|}\sum_{z_{i,t}\in C} r_{i,t+1}\)`. Tree model is invariant to monotonic transformations of predictors, means it naturally accommodates categorical and numerical data in the same model.
+|C| denotes the number of observations in set C. Given C, the optimal choice of $\theta$ is: $\theta=\frac{1}{|C|}\sum_{z_{i,t}\in C} r_{i,t+1}$. Tree model is invariant to monotonic transformations of predictors, means it naturally accommodates categorical and numerical data in the same model.
 
 Tree model is the most prone to overfit among all models. Need to be heavily regularized:
-+ First regularization method is `boosting`: recursively combine many simple trees, the theory behind is that many weak learners may, as an ensemble, comprise a single "strong learner" with greater stability than a single complex tree. `GBRT` Gradien Boosted Regression Tree is used in this paper. With 3 tuning parameters L, V, B (L: depth of tree, v: shrinking factor `\(v\in(0,1)\)`, B: Number of trees)
++ First regularization method is `boosting`: recursively combine many simple trees, the theory behind is that many weak learners may, as an ensemble, comprise a single "strong learner" with greater stability than a single complex tree. `GBRT` Gradien Boosted Regression Tree is used in this paper. With 3 tuning parameters L, V, B (L: depth of tree, v: shrinking factor $v\in(0,1)$, B: Number of trees)
 + Second is using random forest. It is also a resemble method just like boosting. It draws B different bootstrap samples of the data, fits a separate regression tree to each, then average the forecasts. Random forest decorrelates trees using "dropout", which considers only a randomly drawn subset of predictiors for splitting at each potential branch. Tuning parameters are tree depth(L), Number of predictors at each split, number of boostrap sample(B).
 
 
@@ -206,9 +206,9 @@ $$
 R^2_{oos} = 1-\frac{\sum_{(i,t)\in \tau_3}(r_{i,t+1} - \widehat r_{i,t+1})^2}{\sum_{(i,t)\in \tau_3}r^2_{i,t+1}}
 $$
 
-Remark: The denominntor of `\(R^2\)` is the sum of squared excess returns without demeaning. The logical befind is that predictin future excess stock returns with historical averages underperforms a naive forecast of zero by a large margin, using historical mean will lower the bar for forecasting performance.
+Remark: The denominntor of $R^2$ is the sum of squared excess returns without demeaning. The logical befind is that predictin future excess stock returns with historical averages underperforms a naive forecast of zero by a large margin, using historical mean will lower the bar for forecasting performance.
 
-Use Diebold and Mariano (1995) test for pairwise comparisons of `\(R_2\)` in different models: `\(DM_{12} = \bar d_{12}/\hat \delta_{\bar d_{12}}\)` where
+Use Diebold and Mariano (1995) test for pairwise comparisons of $R_2$ in different models: $DM_{12} = \bar d_{12}/\hat \delta_{\bar d_{12}}$ where
 
 $$
 \tag{20}
@@ -217,8 +217,8 @@ $$
 
 ### `1.9 Variable importance and marginal relationships`
 
-`\(VI_j\)` for the importance of the jth variable:
-+ Reduction in panel predictive `\(R^2\)` from setting all values of predictor j to zero.
+$VI_j$ for the importance of the jth variable:
++ Reduction in panel predictive $R^2$ from setting all values of predictor j to zero.
 + Sum of squared partial derivatives (SSD).
 + Trace out the marginal relationship between expected return and each characteristic.
 
@@ -229,7 +229,7 @@ $$
 + Stock level predictive characteristics 94.
 + Macroeconomic predictors 8.
 + Industry dummies 74.
-+ stock-level covariates `\(z_{i,t}\)`, in total 94x(8+1)+74=920
++ stock-level covariates $z_{i,t}$, in total 94x(8+1)+74=920
 
 $$
 \tag{21}
@@ -245,17 +245,17 @@ $$
 
 <img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_1.png">
 
-The out of sample `\(R^2\)` of simple OLS model is negative, indicating that it is arbitrarily worse. The neural network with 3 layers has the best out of sample proformance among all other models.
+The out of sample $R^2$ of simple OLS model is negative, indicating that it is arbitrarily worse. The neural network with 3 layers has the best out of sample proformance among all other models.
 
 <img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_2.png">
 
 The model complexity has been changing constently, but the measure of the complexity is varying from different model. For example, they choose `number of characteristics` for Elastic Net and Generalized Linear model, choose `number of components` for PCR and Partial Linear Square, and choose `average tree depth` for Gradient Boosted Regression Tree.
 
 <img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_3.png">
-The annual horizon analysis shows a larger magnitude of `\(R^2\)`, which indicating ML methods are able to isolate risk premiums that persist over business cycle frequencies and are not merely capturing short-lived inefficiencies.
+The annual horizon analysis shows a larger magnitude of $R^2$, which indicating ML methods are able to isolate risk premiums that persist over business cycle frequencies and are not merely capturing short-lived inefficiencies.
 
 <img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_4.png">
-This table shows the statistical significance of differences among models at the monthly frequncy. The Diebold-Mariano statistics are distributed `\(\matbb N(0,1)\)` under the null no difference. The positive values in the NN3 column showing that NN3 out perform all other models.
+This table shows the statistical significance of differences among models at the monthly frequncy. The Diebold-Mariano statistics are distributed $\matbb N(0,1)$ under the null no difference. The positive values in the NN3 column showing that NN3 out perform all other models.
 
 ### `2.3 Which covariates matters`
 
@@ -263,17 +263,17 @@ This table shows the statistical significance of differences among models at the
 
 ### `2.4 Portfolio forecast`
 
-They build bottom-up forecasts by aggregating individual stock return into portfolios, `\(w^p_{i,t}\)` is the weight of stock i in portfolio p:
+They build bottom-up forecasts by aggregating individual stock return into portfolios, $w^p_{i,t}$ is the weight of stock i in portfolio p:
 $$
 \hat r^p_{t+1} = \sum^n_{i=t}w^p_{i,t} \times \hat r_{i,t+1}
 $$
 
-Translate `\(R^2\)` into sharp ratio, which matters for mean-variance investors:
+Translate $R^2$ into sharp ratio, which matters for mean-variance investors:
 $$
 SR^{\ast} = \sqrt \frac{SR^2 + R^2}{1-R^2}
 $$
 
-and the table below shows the improvement of sharp ratio by the using machine learning methods, which is simply `\((SR^{\ast} - SR)\)`
+and the table below shows the improvement of sharp ratio by the using machine learning methods, which is simply $(SR^{\ast} - SR)$
 <img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_7.png">
 
 Cumulative return of machine learning portfolios:

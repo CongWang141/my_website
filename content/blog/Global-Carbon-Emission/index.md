@@ -3,7 +3,7 @@ title: "Global Carbon Emission Analysis"
 author: "Cong Wang"
 date: "2022-07-30"
 
-excerpt: This article analyze the globe carbon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. It breaks down the global carbon emission and analyze the trend.
+excerpt: This airticle analyize the globle carobon emission. The data for this analysis is from **World Bank Open Data**, collected since 1990. It breaks down the global carbon emission and analyize the trend.
 tags: 
 - Carbon Emission
 
@@ -20,7 +20,7 @@ weight: 1
 
 
 # Motivation
-Global warming has been brought up a long time ago, but it never draws most people's attention not even me till recently. Since 2020,  the wild fires in Austrilia and north America terrified me a lot. In 2022, heat wave stroms most places all around the world. Human activities could be one of the main reseasons for those catastraphic climate problems. Carbon emission is considered a good proxy to quantify the influence of human activities to global warming. This article tries to give some insights about the current status and historical change of global carbon emission.
+Global warming has been brought up a long time ago, but it never draws most people's attention not even me till recently. Since 2020,  the wild fires in Australia and north America terrified me a lot. In 2022, heat wave storms most places all around the world. Human activities could be one of the main reasons for those catastrophic climate problems. Carbon emission is considered a good proxy to quantify the influence of human activities to global warming. This article tries to give some insights about the current status and historical change of global carbon emission.
 
 # Data Sourse
 The data for this analysis is from **World Bank Open Data**, link: https://data.worldbank.org/

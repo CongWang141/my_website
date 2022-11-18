@@ -12,6 +12,8 @@ categories:
 
 featured: true
 layout: single
+
+weight: 1
 ---
 
 
@@ -42,6 +44,10 @@ Carbon emission data is collected since 1990, the year before that shows NA, we 
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'readr' was built under R version 4.2.2
 ```
 
 Build a function to choose columns which are not all data are NA. Then select those columns to a new dataset.

@@ -12,6 +12,8 @@ categories:
 
 featured: true
 layout: single
+
+weight: 1
 ---
 
 

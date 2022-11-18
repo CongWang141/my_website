@@ -13,6 +13,8 @@ categories:
 
 featured: true
 layout: single
+
+weight: 2
 ---
 
 ## Empirical Asset Pricing via Machine Learning

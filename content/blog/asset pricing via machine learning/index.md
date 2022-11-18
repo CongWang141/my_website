@@ -281,4 +281,4 @@ Cumulative return of machine learning portfolios:
 
 ###  `3 Conclusion`
 
-This paper uses a widely studied topic -- predicting returns as a playground, testing different kinds of machine learning methods, the result shows that machine learning can help improve predicting ability for asset returns. Most importantly this paper stands for a standard machine learning text book help new researchers and practitioners understand the mystery of those methods in fintech industry. 
+This paper uses a widely studied topic -- predicting returns as a playground, testing different kinds of machine learning methods, the result shows that machine learning can help improve predicting ability for asset returns. Most importantly this paper stands for a standard machine learning text book help new researchers and practitioners understand the mystery of those methods in fin tech industry. 

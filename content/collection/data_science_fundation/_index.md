@@ -9,8 +9,8 @@ publishDate: "2022-10-01"
 show_author_byline: true
 show_post_date: true
 show_post_thumbnail: true
-subtitle: Teaching materials of The fundation of Data Science
-title: The Fundation of Data Science
+subtitle: Teaching materials of The foundation of Data Science
+title: The Foundation of Data Science
 weight: 1
 ---
 

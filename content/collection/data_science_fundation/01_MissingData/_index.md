@@ -2,7 +2,7 @@
 author: Cong Wang
 date: "2022-10-1"
 description: |
-  Datasets in real life are rarely complete, so handling missing data is a common topic in data science. 
+Datasets in real life are rarely complete, so handling missing data is a common topic in data science. 
 The way we handle such data may have a substantial effect on our results, so caution when dealing with NAs is advisable.
 excerpt: Datasets in real life are rarely complete, so handling missing data is a common topic in data science. 
 The way we handle such data may have a substantial effect on our results, so caution when dealing with NAs is advisable.

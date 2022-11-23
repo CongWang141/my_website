@@ -243,23 +243,23 @@ $$
 
 ### `2.2 The cross-section of individual stock`
 
-<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_1.png">
+<img src = "https://raw.githubusercontent.com/CongWang141/image/master/asset_pricing_via_machine_learning/asset_pricing_machine_learning_1.png?token=GHSAT0AAAAAABX3DT7MAQ56MQGUW6OCA3BIY34R6AA">
 
 The out of sample `\(R^2\)` of simple OLS model is negative, indicating that it is arbitrarily worse. The neural network with 3 layers has the best out of sample proformance among all other models.
 
-<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_2.png">
+<img src = "https://raw.githubusercontent.com/CongWang141/image/master/asset_pricing_via_machine_learning/asset_pricing_machine_learning_2.png?token=GHSAT0AAAAAABX3DT7NSJEY4VUOE35FJIBEY34R62A">
 
 The model complexity has been changing constently, but the measure of the complexity is varying from different model. For example, they choose `number of characteristics` for Elastic Net and Generalized Linear model, choose `number of components` for PCR and Partial Linear Square, and choose `average tree depth` for Gradient Boosted Regression Tree.
 
-<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_3.png">
+<img src = "https://raw.githubusercontent.com/CongWang141/image/master/asset_pricing_via_machine_learning/asset_pricing_machine_learning_3.png?token=GHSAT0AAAAAABX3DT7MZGSSBNVESGMDYLLWY34R7SA">
 The annual horizon analysis shows a larger magnitude of `\(R^2\)`, which indicating ML methods are able to isolate risk premiums that persist over business cycle frequencies and are not merely capturing short-lived inefficiencies.
 
-<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_4.png">
+<img src = "https://raw.githubusercontent.com/CongWang141/image/master/asset_pricing_via_machine_learning/asset_pricing_machine_learning_4.png?token=GHSAT0AAAAAABX3DT7NNDRMFG7K26UCJMDMY34SABA">
 This table shows the statistical significance of differences among models at the monthly frequncy. The Diebold-Mariano statistics are distributed `\(\matbb N(0,1)\)` under the null no difference. The positive values in the NN3 column showing that NN3 out perform all other models.
 
 ### `2.3 Which covariates matters`
 
-<img src = "https://github.com/CongWang141/image/blob/main/asset_pricing_machine_learning_5.png?raw=true">
+<img src = "https://raw.githubusercontent.com/CongWang141/image/master/asset_pricing_via_machine_learning/asset_pricing_machine_learning_5.png?token=GHSAT0AAAAAABX3DT7M3YWPR7IKOW6C5XIKY34SAOA">
 
 ### `2.4 Portfolio forecast`
 
@@ -274,10 +274,10 @@ SR^{\ast} = \sqrt \frac{SR^2 + R^2}{1-R^2}
 $$
 
 and the table below shows the improvement of sharp ratio by the using machine learning methods, which is simply `\((SR^{\ast} - SR)\)`
-<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_7.png">
+<img src = "https://raw.githubusercontent.com/CongWang141/image/master/asset_pricing_via_machine_learning/asset_pricing_machine_learning_7.png?token=GHSAT0AAAAAABX3DT7NX4OOJ52255D5VSVUY34SBNA">
 
 Cumulative return of machine learning portfolios:
-<img src = "https://raw.githubusercontent.com/CongWang141/image/main/asset_pricing_machine_learning_8.png">
+<img src = "https://raw.githubusercontent.com/CongWang141/image/master/asset_pricing_via_machine_learning/asset_pricing_machine_learning_8.png?token=GHSAT0AAAAAABX3DT7M7BJKAIABEQC6PCQEY34SB3Q">
 
 ###  `3 Conclusion`
 
